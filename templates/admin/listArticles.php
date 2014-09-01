@@ -1,11 +1,5 @@
 <?php include "templates/include/admin/header.php" ?>
- 
-      <div id="adminHeader">
-        <h2 id="admin-welcome">Welcome!</h2>
-        <p id="loggedin-out">You are logged in as <b><?php echo htmlspecialchars( $_SESSION['username']) ?></b>. <a href="admin.php?action=logout"?>Log out</a></p>
-      </div>
- 
-      <h1 style="padding:0;">All Articles</h1>
+<?php include "templates/include/admin/bread.php" ?>
  
 <?php if ( isset( $results['errorMessage'] ) ) { ?>
         <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
@@ -21,6 +15,7 @@
         <tr>
           <th>Publication Date</th>
           <th>Article</th>
+          <th>Category</th>
         </tr>
  
 <?php foreach ( $results['articles'] as $article ) { ?>
@@ -29,6 +24,9 @@
           <td><?php echo date('j M Y', $article->publicationDate)?></td>
           <td>
             <?php echo $article->title?>
+          </td>
+           <td>
+            <?php echo $results['categories'][$article->categoryId]->name?>
           </td>
         </tr>
  
@@ -41,4 +39,4 @@
       <p><a href="admin.php?action=newArticle">Add a New Article</a></p>
 </li>
 </ul>
-<?php include "templates/include/footer.php" ?>
+<?php include "templates/include/admin/footer.php" ?>

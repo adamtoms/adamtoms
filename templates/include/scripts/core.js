@@ -55,16 +55,18 @@ jQuery(document).ready(function ($) {
         });
     });
 
-}); //end  document.ready
+}); //end document.ready
+
 
 //Show more button in footer.
 $("#foot-viewMore").click(function () {
     "use strict";
     $(".footer-right").slideToggle('slow', function () {
-        var height = $('.footer-right').height();
-        var pageHeight = $('html').height();
+//        var height = $('.footer-right').height();
+//        var pageHeight = $('html').height();
+        var totalHeight = $('.footer-right').height() + $('html').height();
         if ($(this).is(':visible')) {
-            $(window).scrollTop(height + pageHeight);
+            $(window).scrollTop(totalHeight);
            //could i change the properties of the scroll top to animate only once pageheight is over?
             return false;
         }
@@ -82,10 +84,10 @@ windguruFoot.onclick = (function () {
     "use strict";
     var count = 0;     // init the count to 0
     return function () {
-        count++;       //count
+        count = count + 1;       //was count++; js lint said no!
         if (count === 1) {    // do something on first click
             $('.wg-loader-content').addClass('loader');
-            $('.windguru-content').load("../templates/include/scripts/windguru.html", function () {
+            $('.windguru-content').load("../templates/include/scripts/windguru/index.php", function () {
                 $('.wg-loader-content').removeClass('loader');
             });
         }
@@ -93,19 +95,18 @@ windguruFoot.onclick = (function () {
             $('.windguru-content').slideToggle(400);
         }
     };
-})
-();
-
-
+}());
+//http://adamtoms.co.uk/templates/include/scripts/windguru/index.php
+//../templates/include/scripts/windguru.php
 var facebookFoot = document.getElementById("facebook-f");
 facebookFoot.onclick = (function () {
     "use strict";
     var count = 0;     // init the count to 0
     return function () {
-        count++;       //count
+        count = count + 1;       //was count++; js lint said no!
         if (count === 1) {    // do something on first click
             $('.fb-loader-content').addClass('loader');
-            $('.facebook-content').load("../templates/include/scripts/facebook.php", function () {
+            $('.facebook-content').load("templates/include/scripts/facebook.php", function () {
                 $('.fb-loader-content').removeClass('loader');
             });
         }
@@ -113,5 +114,22 @@ facebookFoot.onclick = (function () {
             $('.facebook-content').slideToggle(400);
         }
     };
-})
-();
+}()); // was }) (); jslint no..
+
+
+/* $(document).ready(function () {    
+    //Get CurrentUrl variable by combining origin with pathname, this ensures that any url appendings (e.g. ?RecordId=100) are removed from the URL
+    var CurrentUrl = window.location.origin+window.location.pathname;
+    //Check which menu item is 'active' and adjust apply 'active' class so the item gets highlighted in the menu
+    //Loop over each <a> element of the NavMenu container
+    $('#mmenu a').each(function(Key,Value)
+        {
+            //Check if the current url
+            if(Value['href'] === CurrentUrl)
+            {
+                //We have a match, add the 'active' class to the parent item (li element).
+                $(Value).parent().addClass('active');
+            }
+        });
+       // $('#mmenu').html(CurrentUrl);
+ }); */

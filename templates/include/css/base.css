@@ -27,7 +27,7 @@ div,span,object,h1,h2,h5,h6,blockquote,a,acronym,address,big,cite,code,del,font,
 	background: transparent;
 	border: 0;
 	font-style: inherit;
-	font-weight: inherit;
+	font-weight: 300; /* was inherit */
 	margin: 0; 
 	padding: 0;
 	outline: 0;
@@ -37,7 +37,10 @@ body {
 	display: flex; 
 	min-height: 100vh;
 	flex-direction: column;
-	font-family:Open Sans; margin:0; background: none repeat scroll 0% 0% rgb(255, 255, 255); /* #EFE9E5*/
+	font-family:Open Sans; 
+	margin:0;
+	padding:0;
+	background: none repeat scroll 0% 0% rgb(255, 255, 255); /* #EFE9E5*/
 }
 section{
 	float:left;
@@ -52,10 +55,12 @@ section{
 
 /* ##### sub-homepage grid h2 and p ########### */
 .homepage-grid > li {margin: 0px 2.5%;display: block;padding: 2% 0px;}
-.homepage-grid li h2 {	text-align:center;color:rgb(238, 101, 87);font-size: 2.5em;padding:0;}
+.homepage-grid li h2 {	text-align:center;color:rgb(238, 101, 87);font-size: 2.5em;padding:0;transition:1.2s;}
 .homepage-grid li p {text-align:center;color:rgb(68, 68, 68);font-size: 1.1em;}
-.homepage-grid li h2 a {text-decoration: none; color: inherit;}
-.homepage-grid li h2 a:hover {color: red;transition:1s;}
+
+.homepage-grid > li:hover {transition:1.2s;background:rgba(166,166,166,0.2);}
+.homepage-grid > li:hover a h2{color:red; transition:1.2s;}
+
 
 
 p{font-size: 1.1em;color: rgb(64,64,64);}
@@ -69,7 +74,7 @@ h4{text-decoration: none !important;color: grey;font-size: 1.5em;line-height: 0p
 h4:hover{color:rgb(238,101,87);}
 h5{text-decoration: none;color: rgb(238,101,87);font-size: 1.3em;}
 h5:target{margin-top:-50px;padding-top:50px;}
-li a {text-decoration:none;color: #EE6557;}/* inherit? */
+li a {text-decoration:none;color: #EE6557;} /*inherit needed */
 
 #quick-links ul{margin-left: 35px;}
 #quick-links ul a:hover{color:red;transition:0.3s; text-decoration: underline;}
@@ -79,12 +84,16 @@ li a {text-decoration:none;color: #EE6557;}/* inherit? */
 .contact-text{font-size:0.8em;}
 .contact-text:hover {color:red;}
 
-.advertone p {text-align: center;color:rgb(68, 68, 68);font-size: 1.2em;}
+.advertone p {text-align: center;color:rgb(68, 68, 68);font-size: 1.4em;} /* was 1.2 */
 .advertone h2 {	text-align:center;	color:rgb(68, 68, 68);	font-size: 2.5em;}
 .advertone img{	width: 81%;	margin: 0 9%;	max-width: 640px;	box-shadow: 0 15px 10px #777;	z-index:10;	border-radius: 1%;}
+ul.advertone li:hover{
+transition: all 1.5s ease 0s;
+background: none repeat scroll 0% 0% rgba(166, 166, 166, 0.1);
+     background-size: 80px 60px;}
 
 img.portfolio{max-width: 95%;margin: 30px 2.5%;}
-.large-img{margin: 3% 2.5%;float: right;width: 90%;box-shadow: 0px 15px 10px #777;}
+.large-img{margin: 3% 2.5%;float: right;width: 95%;box-shadow: 0px 15px 10px #777;}
 
 .container1 {min-width:100%;	position:relative;	text-align: justify;}
 
@@ -92,8 +101,11 @@ img.portfolio{max-width: 95%;margin: 30px 2.5%;}
 /* ==========================================================================
    =02 Navigation
    ========================================================================== */
+   
+a#current{color:red;width:100px;} 
+   
 #mmenumap, #mmenucontact {display: none;}
-#back-top {	position: fixed;display: none;cursor: pointer;bottom: 30px;right: 0px;background-color:rgba(136,136,136,0.3);font-size: 225%;border-radius: 100%;color: rgba(61,61,61,0.9);position: fixed}
+#back-top {	margin-right: 0;position: fixed;display: none;cursor: pointer;bottom: 30px;right: 30px;background-color:rgba(136,136,136,0.3);font-size: 225%;border-radius: 100%;color: rgba(61,61,61,0.9);position: fixed}
 /* style for menu items */
 ul.list-icon-items{list-style-type:none;max-width: 760px;margin:0 auto;min-height: 250px;}
 
@@ -101,7 +113,7 @@ ul.list-icon-items{list-style-type:none;max-width: 760px;margin:0 auto;min-heigh
 /* ==========================================================================
    =03 Index + Slider
    ========================================================================== */
-#slider{margin: 0px auto 4%;
+#slider{margin: 0px auto 5%;
 max-width: 1000px;
 position: relative;}/*max-width: 800px;*/
 /*remove and use sprite */
@@ -111,17 +123,18 @@ button{
 position: absolute;
 z-index: 10;
 box-shadow: 0px 0px 0px 0px #FFF inset;
-background-color: rgba(102,102,102,0.6);
+background-color: rgba(102,102,102,0.3);
 border-radius: 4px;
 text-indent: 0px;
 border: 1px solid #DCDCDC;
 display: inline-block;
 color: white;
+width: 1em;
 font-size: 36px;
 font-style: normal;
-height: 45px;
-line-height: 31px;
-width: 45px;
+/*height: 45px;*/
+/*line-height: 31px; */
+width: 48px;
 text-decoration: none;
 text-align: center;
 transition: ease-in-out 0.3s;
@@ -156,8 +169,8 @@ display: inline-block;
 margin: -2px -19px; /*was -15px*/
 width: 40px;
 }
-.footer-right a{text-decoration: none;}
-.footer-right a:hover{color:white;transition:1s;}
+.footer-right li a{text-decoration: none; color:inherit;}
+.footer-right li a:hover{color:white !important;transition:1s;}
 
 footer{
 	overflow: hidden;
@@ -187,12 +200,12 @@ p.readmore{text-align: right!important;color: #EE6557 !important;}
 /* ==========================================================================
    =05 Contact Page
    ========================================================================== */
-.circ.large.tertiary div{margin-left: 10px;}/* fix for fontello */
+/*.circ.large.tertiary div{margin-left: 10px;} fix for fontello */
 .circ { font-size: 30px;word-spacing: 1px;-webkit-border-radius: 1000px;border-radius: 1000px;-webkit-box-sizing: border-box;box-sizing: border-box;line-height: 105px;width: 100px;height: 100px;max-width: 100%;text-align: center;color: #fff;background-color: #16a6b6;display: -moz-inline-stack;display: inline-block;vertical-align: middle;zoom: 1;position: relative;}
 .circ.tertiary {background-color: #d1d1d1;}/* color circles grey */
 /* make circ larger by 20px */
 .circ.large {font-size: 50px;word-spacing: 1px;line-height: 115px;width: 120px;height: 120px;margin:0 auto;}
-.list-icon-items .pulse {position: absolute;/*  top: 0;left: 0; */top: -1px;left: -11px;width: 100%;height: 100%;opacity: 0;background: none;border: 1px solid #ee6557;-webkit-transition-property: all;-moz-transition-property: all;-o-transition-property: all;transition-property: all;-webkit-transition-duration: 275ms;-moz-transition-duration: 275ms;-o-transition-duration: 275ms;
+.list-icon-items .pulse {position: absolute;  top: 0;left: 0; /*top: -1px;left: -11px;*/width: 100%;height: 100%;opacity: 0;background: none;border: 1px solid #ee6557;-webkit-transition-property: all;-moz-transition-property: all;-o-transition-property: all;transition-property: all;-webkit-transition-duration: 275ms;-moz-transition-duration: 275ms;-o-transition-duration: 275ms;
   transition-duration: 275ms;-webkit-transition-timing-function: cubic-bezier(0.53, -0.67, 0.73, 0.74);-moz-transition-timing-function: cubic-bezier(0.53, -0.67, 0.73, 0.74);-o-transition-timing-function: cubic-bezier(0.53, -0.67, 0.73, 0.74);transition-timing-function: cubic-bezier(0.53, -0.67, 0.73, 0.74);}
 /* hover border style */
 .list-icon-items a:hover .pulse, .list-icon-items a:focus .pulse, .list-icon-items a:active .pulse {opacity: 1;-webkit-transform: scale(1.15);-moz-transform: scale(1.15);-ms-transform: scale(1.15);-o-transform: scale(1.15);transform: scale(1.15);-webkit-transition-timing-function: cubic-bezier(0.37, 0.74, 0.15, 1.65);-moz-transition-timing-function: cubic-bezier(0.37, 0.74, 0.15, 1.65);-o-transition-timing-function: cubic-bezier(0.37, 0.74, 0.15, 1.65);transition-timing-function: cubic-bezier(0.37, 0.74, 0.15, 1.65);}
@@ -208,27 +221,16 @@ p.readmore{text-align: right!important;color: #EE6557 !important;}
    =06 Icons
    ========================================================================== */
 #logo{height: 36px;overflow: hidden;display: block;margin: 5px 5px 0.5%;float: left;}
-#logo-text{display: inline;color: #444;font-weight: 300;font-size: 1.3em;margin: 0px -4.4% 0px 0px;line-height: 45px;float: left;font-weight: 400;}
+#logo-text{display: inline;color: #444;font-weight: 300;font-size: 1.3em;margin: 0px -4.4% 0px 0px;line-height: 45px;float: left;}
 
-/*.sprite-logo, .sprite-small-logo{background: url(../../../images/sprite.png) no-repeat;float:left;display:block;}
-.sprite-logo {background-position: -1px -150px;width: 300px;height: 50px;margin: -7px 0px -7px 2%;}
-.icon-contact, .icon-diary, .icon-facebook, .icon-winter, .icon-map, .icon-shop, .icon-calendar, .icon-large-email, .icon-large-phone,.icon-med-weather,.icon-med-phone,.icon-med-facebook,.icon-smilie,.icon-large-facebook,, .icon-med-smilie*/
-/*.icon-large-facebook {background-position: -210px -82px; width: 70px; height: 70px;}
-.icon-diary{background-position: -30px 0 ;width: 30px;height: 30px;}
-.icon-winter{background-position: -120px -0 ;	width: 30px;	height: 30px;}
-.icon-map{background-position: -1px -33px;    width: 45px;    height: 45px;}
-.icon-calendar{background-position: 0px -80px;width: 70px; height: 70px;}
-.icon-large-phone{background-position: -71px -82px; width: 70px; height: 70px;}
-.icon-large-email{background-position: -140px -82px; width: 70px; height: 70px;}
-.icon-weather{background-position: -99px -32px; width: 50px; height: 50px;}
-.icon-phone {background-position: -150px -33px;width: 50px;height: 50px;}
-.icon-facebook {background-position: -201px -30px; width: 50px; height: 50px;}
-.icon-med-smilie{background-position: -250px -32px ;width: 50px;height: 50px;}*/
+
 
 
 /* ###################################        Start the rules from template        #################################*/
+#headlines > li:nth-child(odd){background-color: rgba(166, 166, 166, 0.1);padding: 1% 0;}
+
 #headlines {list-style: none;padding-left: 0; width: 100%; width: 85%;margin: 0 auto;}
-#headlines li {margin-bottom: 2em;}
+#headlines li {margin-bottom: 2em;float: left;width: 100%;height: auto;}
 #headlines li:hover {color:red;transition:0.7s;}
 .pubDate {font-size: .8em;color: #eb6841;text-transform: uppercase;}
 #headlines .pubDate {display: inline-block;width: 100px;font-size: .5em;vertical-align: middle;}
@@ -258,7 +260,7 @@ tr:hover {  background: #ddd;  cursor: pointer;}
   -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   -box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
 }
-.statusMessage {background-color: #2b2;  border: 1px solid #080;  color: #fff;  width: 79%;margin: 10px auto;}
+.statusMessage {background-color: #2b2;  border: 1px solid #080;  color: #fff;  width: 83%;margin: 10px auto;}
 .errorMessage {background-color: #f22;  border: 1px solid #800;  color: #fff;}
 /* ###################################        End the rules from template        #################################*/
 
@@ -267,6 +269,9 @@ tr:hover {  background: #ddd;  cursor: pointer;}
    =07 Max-width: 640
    ========================================================================== */
 @media screen and (max-width: 640px) {
+
+#sLogo{pointer-events: none;}/*removed the anchor from logo*/
+
 
 ul + h2 {color: red !important;}
 li hr {width: 105%; margin: 0 -2.5%;}	
@@ -287,7 +292,11 @@ aside{width: 95%;margin: 0 auto;float: left;margin: 0 2.5%;	text-align: center;}
 .footer-right ~ li{font-size: 1.3em;margin: 0px 0px 0px 40px;border-bottom: 1px solid #FFF;border-color: #FFF;border-style: solid;text-decoration: none;color: white !important;font-weight: 100;}
 .footer-text {font-size: 1.3em;margin: 0px 0px 0px 40px;border-bottom: 1px solid white;border-color: white;border-style: solid;text-decoration: none;color: white !important;font-weight: 100;}
 #footer-list > li {line-height:35px;padding: 10px 20px;text-align: left;}
-.windguru{overflow:auto;-webkit-overflow-scrolling:touch;max-width: 640px;margin: 0 auto;}
+
+.windguru{overflow:auto;
+-webkit-overflow-scrolling:touch;
+max-width: 640px;margin: 0 auto;}
+
 #menu-address{z-index:105;text-align:center;padding: 5%;display:block;color:inherit;}
 
 
@@ -375,11 +384,13 @@ text-align:center;
    ========================================================================== */
 @media screen and (min-width: 641px) 
 {
+	
+	#mmenu > li:nth-child(1) > a:nth-child(1) {display:none;} /* hides the home menu for less cluttered hp */
 
 ul#footer-list li i{	
 float: left;
 display: block;
-font-size: 1.4em;
+font-size: 1.4em; /* was 1.4 */
 color: inherit;
 width: 50px;
 margin: -7px 3% -7px 0;}
@@ -390,7 +401,7 @@ h1 {text-align: center;color: rgb(68, 68, 68);font-size: 4em;font-weight: 300;pa
 h2 {text-align:center;color:rgb(68, 68, 68);font-size: 3em;font-weight:300;padding:30px 0;margin:5% 0 0;}
 
 #logo{display: inline;height: 150%;float: left;margin: -10px 0px 0px 1%;}	
-#logo-text{font-size:2em;font-size: 1.7em;line-height: 115%;}
+#logo-text{font-size:2.3em;line-height: 85%;}
 .c_image{margin:0 2.5% 40px;float:right;width: 55%;max-width: 450px;box-shadow: 0 15px 10px rgb(119, 119, 119);} /* margin was 0 2.5% */
 
 ul.mcontent{max-width: 800px;margin: 0 2.5%;list-style-type: none;	text-align:justify;}	
@@ -413,7 +424,7 @@ ul#article-info > li {margin: 0;}
 
 /* menu */
 #mmenu li {float:left;}
-.menucontainer{border-bottom: 1px solid rgb(238, 238, 238);	box-shadow:0px 0px 3px rgb(153, 153, 153);	padding: 1px 0;	min-width:100%;	z-index: 101;	display: inline-block;	border-top: 2px solid rgb(238, 101, 87);	position:relative;	margin:0;}
+.menucontainer{/*border-bottom: 1px solid rgb(238, 238, 238);*/	box-shadow:0px 0px 3px rgb(153, 153, 153);	padding: 1px 0;	min-width:100%;	z-index: 101;	display: inline-block;	border-top: 2px solid rgb(238, 101, 87);	position:relative;	margin:0;}
 a.navicon.mtoggle{display:none !important;}
 nav#menuleft{margin: 1%;height: 36px;}
 nav#menucontact.mtogglecontact{display:none !important;}
@@ -421,8 +432,8 @@ nav#menumap.mtogglem{display:none !important;}
 nav#mobile ul li {list-style:none;float:left;display:inline-block;padding:10px;}
 #mmenu ul{display:inline;}
 ul#mmenu{display:inline !important;list-style-type:none;float:right;}
-#mmenu li a:hover{background-color:rgb(128, 200, 57) !important;} /* border: 1px solid red;margin: 0px !important; color:rgb(68, 68, 68);*/
-#mmenu li a{float:left !important;margin: 1px !important;background-color:transparent !important;padding: 2px 10px;	font-size:1.2em;text-decoration:none;color:rgb(68, 68, 68);border-radius:10px;}
+#mmenu li a:hover{background-color:rgba(166, 166, 166, 0.2) !important /*rgb(128, 200, 57) !important;*/} /* border: 1px solid red;margin: 0px !important; color:rgb(68, 68, 68);*/
+#mmenu li a{float:left !important;margin: 1px !important;background-color:transparent !important;padding: 2px 10px;	font-size:1.5em;text-decoration:none;color:rgb(68, 68, 68);border-radius:10px;font-weight:300;}
 
 
 /* Sub homepage styles */
@@ -432,7 +443,7 @@ ul#mmenu{display:inline !important;list-style-type:none;float:right;}
 /* footer */
 #footer-list{float: left;display: block;width: 50%;}
 #footer-list > li:hover {color:white;transition:0.3s;}
-.footer-right{float: left;display: block;width: 50%;list-style: circle;margin: 2% 0px 0px 0;cursor:pointer;}
+.footer-right{float: left;display: block;width: 50%;list-style: circle;margin: 2% 0 0 0;cursor:pointer;font-size: 1.2em;}
 .footer-right li{margin: 0 0 0 65px;color: #8C8C8C;text-decoration: none;}
 .footer-right li:hover{color:white;transition:0.3s;}
 #footer-wrap{margin: 0 2.5%;}
@@ -446,6 +457,9 @@ ul#mmenu{display:inline !important;list-style-type:none;float:right;}
    ========================================================================== */
 @media screen and (min-width: 900px) 
 {
+
+#mmenu > li:nth-child(1) > a:nth-child(1) {display:block;}/* allows the home menu to appear */
+	
 #logo{margin: -10px 0px 0px 4%;}
 
 .advertone li {margin: 0px -1% 1% 1.2%;display: block !important;padding: 2% 1%;width: 30.3333%;float: left;position: relative; min-height: 275px;}
@@ -453,10 +467,14 @@ ul#mmenu{display:inline !important;list-style-type:none;float:right;}
 .advertone h2{font-size: 3em;padding: 0px;}
     
 /* ### homepage box style ### */
-.homepage-grid > li {margin: 0 -1% 1% 1.2%;display:block !important;padding: 2% 1%;	width:30.3333333333%;float:left;position: relative;transition:1.5s;max-height: 170px;} 
+.homepage-grid > li {margin: 0 -1% 1% 1.2%;display:block !important;padding: 2% 1%;	width:30.3333333333%;float:left;position: relative;transition:1.5s;max-height: 170px;}
+.homepage-grid > li a{display: inline-block;width: 100%;min-height: 185px;}
+
+/* moved -- 
 .homepage-grid > li:hover {transition:1.5s;background:rgba(166,166,166,0.2);}
 .homepage-grid > li h2:hover {color:red;}
-.homepage-grid > li a{display: inline-block;width: 100%;min-height: 185px;}
+*/
+
 
 #footer-wrap{margin: 0 2.5%;width:95%;}
 .grid-1 {max-width:899px;width: 20%;position: relative;float: left;margin: 20px 2.5%;text-align: center;}	

@@ -1,5 +1,32 @@
 <?php 
+$root = $_SERVER['DOCUMENT_ROOT']; 	
+$fileName = "/autozip.zip";
+$outputRoot = $root."".$fileName;
 
+
+//$action = isset( $_POST['action'] ) ? $_POST['action'] : "";
+$action = isset( $_GET['action'] ) ? $_GET['action'] : "";
+
+
+switch ( $action ) {
+  case 'Zip':
+    Zip();
+    break;
+  case 'rmZip':
+	exec("rm $outputRoot");
+	echo 'rmzip';
+    break;
+  case 'mkZip':
+	Zip( $root , $outputRoot);
+	echo 'zipDir';
+	break;
+  default:
+    echo'Homepage';
+}
+
+
+
+//Zip Function, called from mkZip
 function Zip($source, $destination)
 {
     if (!extension_loaded('zip') || !file_exists($source)) {
@@ -43,13 +70,12 @@ function Zip($source, $destination)
     }
 
     return $zip->close();
+
 }
 
 
-//called with the following
-Zip('../../../../r', '../../../autozip.zip');
-
-print'<code style="font-size: 2em;margin: 10%;position: fixed;">contents of parent dir zipped to root. <a href="http://adamtoms.co.uk/r/autozip.zip">download here</a></code>'
-
-
 ?>
+
+
+<?php/* echo $fileName; */?>
+

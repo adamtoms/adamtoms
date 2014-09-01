@@ -2,11 +2,13 @@
 	<nav id="menuleft">
 	<a class="navicon mtoggle" id="toggle-bar" href="#">Main Menu</a>
 
-	<img src="../images/logo.svg" id="logo">
+	<a href="<?php DOMAIN: ?>/" id="sLogo"><img src="../images/logo.svg" id="logo" alt="Essex Kite Park logo">
 	<div id="logo-text">Essex Kite Park</div> 
-
+	</a>
 	<nav class="mtogglecontact icon-phone" id="menucontact"></nav>
 	<nav class="mtogglem icon-map" id="menumap"></nav> <!--<a href="#"></a>-->
+
+
 
 	<ul id="mmenu">
 	    <li><a href="/">Home</a></li>

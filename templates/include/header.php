@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link href="../templates/include/css/base.css" rel="stylesheet" type="text/css"/>
-	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link type="text/css" rel="stylesheet" href="../templates/include/css/fontello.css">
 	<title><?php echo htmlspecialchars( $results['pageTitle'] )?></title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">

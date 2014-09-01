@@ -1,20 +1,22 @@
 <div id="slider">
-	<button style="float: left;left: 0;top: 43%;" onclick="mySwipe.prev()">&lt;</button> 
-<button style="float: right;right: 0;top: 43%;" onclick="mySwipe.next()">&gt;</button>
+
+<button style="float: left;left: 0px;top: 33%;font-size: 5em;" onclick="mySwipe.prev()" class="icon-left-open-big"></button><!-- &lt; &gt; -->
+<button style="float: right;right: 0;top: 33%;font-size: 5em;" onclick="mySwipe.next()" class="icon-right-open-big"></button>
+
 <div id="mySwipe" style="max-width:950px;max-height:400px;margin:5% auto 0;box-shadow:0 6px 20px rgb(100,100,100)" class="swipe">
-<!--
-could i keep the float set. now they are inside setting left and right 0 should lock them to the inside of the parent div!
--->
 
 	<div class="swipe-wrap" style="max-height: 355px;margin-bottom:-5px;">
 		<div>
-			<a href="#"><img src="http://r.adamtoms.co.uk/images/slider/snowboarding.jpg" alt="Snowboarding at Essex Kite Park" style="width: 100%;"></a>
+			<a href="/pages/membership"><img src="http://r.adamtoms.co.uk/images/slider/membership.jpg" alt="Snowboarding at Essex Kite Park" style="width: 100%;"></a>
 		</div>
 	    <div>
-	    	<a href="#"><img src="http://r.adamtoms.co.uk/images/slider/clubhouse.jpg" alt="Photo of our clubhouse" style="width: 100%;"></a>
+	   		<a href="/pages/lessons"><img src="http://r.adamtoms.co.uk/images/slider/kitesurfing.jpg" alt="Kitesurfers off Southend Beachfront" style="width: 100%;"></a>
 	    </div>
 	    <div>
-	    	<a href="#"><img src="http://r.adamtoms.co.uk/images/slider//kitesurfers.jpg" alt="Kitesurfers off Southend Beachfront" style="width: 100%;"></a>
+	    	<a href="/pages/events"><img src="http://r.adamtoms.co.uk/images/slider/summer-sessions-2014.jpg" alt="2014 Event Dates Photo of people spectating" style="width: 100%;"></a>
+	    </div>
+	    <div>
+	    	<a href="/pages/the-park"><img src="http://r.adamtoms.co.uk/images/slider/open-all-year.jpg" alt="We are open year round! Photo of JB Snow Kiting" style="width: 100%;"></a>
 	    </div>
 <!--	    <div>
 	    	<a href="#"><img src="http://r.adamtoms.co.uk/images/104.jpg" alt="Lewis Wilby on the Kickers" style="width: 100%;"></a>

@@ -18,6 +18,11 @@ class Article
   public $publicationDate = null;
  
   /**
+  * @var int The article category ID
+  */
+  public $categoryId = null;
+ 
+  /**
   * @var string Full title of the article
   */
   public $title = null;
@@ -37,7 +42,9 @@ class Article
   */
   public $page_identifier = null;
  /* added function, as described */
- 
+
+
+
   /**
   * Sets the object's properties using the values in the supplied array
   *
@@ -47,6 +54,7 @@ class Article
   public function __construct( $data=array() ) {
     if ( isset( $data['id'] ) ) $this->id = (int) $data['id'];
     if ( isset( $data['publicationDate'] ) ) $this->publicationDate = (int) $data['publicationDate'];
+    if ( isset( $data['categoryId'] ) ) $this->categoryId = (int) $data['categoryId'];
     if ( isset( $data['title'] ) ) $this->title = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['title'] );
     if ( isset( $data['summary'] ) ) $this->summary = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['summary'] );
     if ( isset( $data['content'] ) ) $this->content = $data['content'];
@@ -111,22 +119,26 @@ public static function getBypage_identifier( $page_identifier ) {
     if ( $row ) return new Article( $row );
   }
 
- 
+
+
   /**
   * Returns all (or a range of) Article objects in the DB
   *
   * @param int Optional The number of rows to return (default=all)
+  * @param int Optional Return just articles in the category with this ID
   * @param string Optional column by which to order the articles (default="publicationDate DESC")
   * @return Array|false A two-element array : results => array, a list of Article objects; totalRows => Total number of articles
   */
  
-  public static function getList( $numRows=1000000, $order="publicationDate DESC" ) {
+  public static function getList( $numRows=1000000, $categoryId=null, $order="publicationDate DESC" ) {
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(publicationDate) AS publicationDate FROM articles
+    $categoryClause = $categoryId ? "WHERE categoryId = :categoryId" : "";
+    $sql = "SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(publicationDate) AS publicationDate FROM articles $categoryClause
             ORDER BY " . mysql_escape_string($order) . " LIMIT :numRows";
  
     $st = $conn->prepare( $sql );
     $st->bindValue( ":numRows", $numRows, PDO::PARAM_INT );
+	if ( $categoryId ) $st->bindValue( ":categoryId", $categoryId, PDO::PARAM_INT );
     $st->execute();
     $list = array();
  
@@ -154,12 +166,16 @@ public static function getBypage_identifier( $page_identifier ) {
  
     // Insert the Article
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "INSERT INTO articles ( publicationDate, title, summary, content ) VALUES ( FROM_UNIXTIME(:publicationDate), :title, :summary, :content )";
+    
+$sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, content) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content)";
+//add above , page_identifier and :page_identifier
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":publicationDate", $this->publicationDate, PDO::PARAM_INT );
+    $st->bindValue( ":categoryId", $this->categoryId, PDO::PARAM_INT );
     $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
     $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
     $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
+   // $st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
@@ -177,9 +193,10 @@ public static function getBypage_identifier( $page_identifier ) {
     
     // Update the Article
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "UPDATE articles SET publicationDate=FROM_UNIXTIME(:publicationDate), title=:title, summary=:summary, content=:content WHERE id = :id";
+    $sql = "UPDATE articles SET publicationDate=FROM_UNIXTIME(:publicationDate), categoryId=:categoryId, title=:title, summary=:summary, content=:content WHERE id = :id";
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":publicationDate", $this->publicationDate, PDO::PARAM_INT );
+    $st->bindValue( ":categoryId", $this->categoryId, PDO::PARAM_INT );
     $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
     $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
     $st->bindValue( ":content", $this->content, PDO::PARAM_STR );

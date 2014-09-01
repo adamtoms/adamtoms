@@ -1,11 +1,5 @@
 <?php include "templates/include/admin/header.php" ?>
- 
-      <div id="adminHeader">
-        <h3 style="margin-top:50px;">Edit</h3>
-        <p>You are logged in as <b><?php echo htmlspecialchars( $_SESSION['username']) ?></b>. <a href="admin.php?action=logout"?>Log out</a></p>
-      </div>
- 
-      <h1 style="padding:0;"><?php echo $results['pageTitle']?></h1>
+<?php include'templates/include/admin/bread.php';?>
  
       <form action="admin.php?action=<?php echo $results['formAction']?>" method="post" id="edit-article">
         <input type="hidden" name="articleId" value="<?php echo $results['article']->id ?>"/>
@@ -30,7 +24,15 @@
             <label for="content">Article Content</label>
             <textarea name="content" id="content" placeholder="The HTML content of the article" required maxlength="100000" style="height: 30em;"><?php echo htmlspecialchars( $results['article']->content )?></textarea>
           </li>
- 
+			<li>
+           	 <label for="categoryId">Article Category</label>
+           	 <select name="categoryId">
+              <option value="0"<?php echo !$results['article']->categoryId ? " selected" : ""?>>(none)</option>
+            <?php foreach ( $results['categories'] as $category ) { ?>
+              <option value="<?php echo $category->id?>"<?php echo ( $category->id == $results['article']->categoryId ) ? " selected" : ""?>><?php echo htmlspecialchars( $category->name )?></option>
+            <?php } ?>
+            </select>
+          </li>
           <li>
             <label for="publicationDate">Publication Date</label>
             <input type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo $results['article']->publicationDate ? date( "Y-m-d", $results['article']->publicationDate ) : "" ?>" />

@@ -26,5 +26,5 @@
         </div>
  
       </form>
-
-<?php include "templates/include/footer.php" ?>
+<?php /* echo hash ( sha256 , $password ); */ ?>
+<?php include "templates/include/admin/footer.php" ?>
