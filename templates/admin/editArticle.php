@@ -33,6 +33,21 @@
             <?php } ?>
             </select>
           </li>
+		<li>
+<label for="page_identifier">Page Identifier</label>
+ <input type="text" name="page_identifier" id="page_identifier" placeholder="Name to appear in url category/page_identifier/" required autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->page_identifier )?>" />
+          
+          
+          
+
+		
+          </li>
+          
+          
+          
+          
+          
+          
           <li>
             <label for="publicationDate">Publication Date</label>
             <input type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo $results['article']->publicationDate ? date( "Y-m-d", $results['article']->publicationDate ) : "" ?>" />

@@ -72,7 +72,9 @@ switch ( $action ) {
 }
  
  
- 
+/*******************************************
+*** Login/Out
+*******************************************/
 //define the user ID as opposed to the
 
 function login() {
@@ -104,7 +106,6 @@ function login() {
  
 }
  
- 
 function logout() {
   unset( $_SESSION['username'] );
   header( "Location: admin" );
@@ -118,7 +119,7 @@ function newArticle() {
   $results = array();
   $results['pageTitle'] = "New Article";
   $results['formAction'] = "newArticle";
- 
+  
   if ( isset( $_POST['saveChanges'] ) ) {
  
     // User has posted the article edit form: save the new article
@@ -199,6 +200,7 @@ function listArticles() {
   foreach ( $data['results'] as $category ) $results['categories'][$category->id] = $category;
   
   $results['pageTitle'] = "All Articles";
+  //$results['adminBread'] = "New Article";
  
   if ( isset( $_GET['error'] ) ) {
     if ( $_GET['error'] == "articleNotFound" ) $results['errorMessage'] = "Error: Article not found.";

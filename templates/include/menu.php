@@ -12,10 +12,10 @@
 
 	<ul id="mmenu">
 	    <li><a href="/">Home</a></li>
-		<li><a href="/pages/the-park">About</a></li>
-		<li><a href="/pages/lessons">Learn</a></li>
-		<li><a href="/pages/events">Events</a></li>
-	    <li><a href="/pages/photography">Gallery</a></li>
+		<li><a href="/about/the-park">About</a></li>
+		<li><a href="/learn/lessons">Learn</a></li>
+		<li><a href="/events/events">Events</a></li>
+	    <li><a href="/gallery/photography">Gallery</a></li>
 		<li id="contact_page"><a href="/pages/contact">Contact</a></li>
 	</ul>
 	<ul id="mmenumap">

@@ -38,11 +38,11 @@
 
 
 <ul class="footer-right">
-	<li><a href="/pages/membership" style="color:#EE6557 !important;">Membership</a></li>
+	<li><a href="/membership/membership" style="color:#EE6557 !important;">Membership</a></li>
 	<li>Tides</li>
-	<li><a href="/pages/contact">Contact Us</a></li>
-	<li><a href="/pages/links">Links</a></li>
-	<li><a href="/pages/terms-&amp;-disclaimer">Terms and Conditions</a></li>
+	<li><a href="/about/contact">Contact Us</a></li>
+	<li><a href="/about/links">Links</a></li>
+	<li><a href="/about/terms-&amp;-disclaimer">Terms and Conditions</a></li>
 	<li><a href="<?php echo DOMAIN; ?>/?action=archive">Article Archive</a></li>
 	<li><a href="/admin">Login</a></li>
 </ul>

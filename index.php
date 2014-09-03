@@ -167,7 +167,7 @@ function viewCategoryName() {
  
  // use the below to set the breadcrum level before, will allow to return to the homepage.
  // $results['pageTitle'] = $results['category']->name . " | Adam Toms";
-  require( TEMPLATE_PATH . "/admin/test.php" );
+  require( TEMPLATE_PATH . "/viewArticle.php" );
 	
 	
 }

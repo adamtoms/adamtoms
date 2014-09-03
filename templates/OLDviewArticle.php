@@ -1,19 +1,11 @@
 <?php include "templates/include/header.php" ?>
  <ul class="mcontent">
- 	<li><?php include "templates/include/admin/bread.php" ?></li>
 	<li>
 		
-		<!--http://adamtoms.co.uk/?action=viewCategoryNameandArticle&categoryName=events&page_identifier=contact-->
-				
-		<p>Cat ID:<?php echo htmlspecialchars( $results['category']->id )?></p>
-		<p>Cat Name:<?php echo htmlspecialchars( $results['category']->name )?></p>
-		<p>Cat Description:<?php echo htmlspecialchars( $results['category']->description )?></p>
-		
-		
+		<h1><?php echo htmlspecialchars( $results['article']->title )?></h1>		
 		<p><?php echo htmlspecialchars( $results['article']->summary )?></p>
 		<div><?php echo $results['article']->content?></div>
-		<h1><?php echo htmlspecialchars( $results['page_identifier']->page_identifier )?></h1>
-		<!-- this is doing nothing. need to make it work. related to menu-->
+		<h1><?php echo htmlspecialchars( $results['page_identifier']->page_identifier )?></h1> <!-- this is doing nothing. need to make it work. related to menu-->
 	</li>
  </ul>
  <ul id="article-info">

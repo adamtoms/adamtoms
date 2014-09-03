@@ -406,7 +406,7 @@ h2 {text-align:center;color:rgb(68, 68, 68);font-size: 3em;font-weight:300;paddi
 
 #logo{display: inline;height: 150%;float: left;margin: -10px 0px 0px 1%;}	
 #logo-text{font-size:2.3em;line-height: 85%;}
-.c_image{margin:0 2.5% 40px;float:right;width: 55%;max-width: 450px;box-shadow: 0 15px 10px rgb(119, 119, 119);} /* margin was 0 2.5% */
+.c_image{margin:0 2.5% 0;float:right;width: 55%;max-width: 450px;box-shadow: 0 15px 10px rgb(119, 119, 119);} /* margin was 0 2.5% */
 
 ul.mcontent{max-width: 800px;margin: 0 2.5%;list-style-type: none;	text-align:justify;}	
 

@@ -167,7 +167,7 @@ public static function getBypage_identifier( $page_identifier ) {
     // Insert the Article
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
     
-$sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, content) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content)";
+$sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, content, page_identifier) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content, :page_identifier)";
 //add above , page_identifier and :page_identifier
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":publicationDate", $this->publicationDate, PDO::PARAM_INT );
@@ -175,7 +175,7 @@ $sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, cont
     $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
     $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
     $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
-   // $st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
+$st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
