@@ -29,6 +29,10 @@ switch ( $action ) {
     deleteArticle();
     break;
     
+  case 'menu':
+  	menu();
+  	break;
+    
     case 'listCategories':
     listCategories();
     break;
@@ -106,7 +110,9 @@ function logout() {
   header( "Location: admin" );
 }
  
- 
+/*******************************************
+*** New Article
+*******************************************/
 function newArticle() {
  
   $results = array();
@@ -119,12 +125,12 @@ function newArticle() {
     $article = new Article;
     $article->storeFormValues( $_POST );
     $article->insert();
-    header( "Location: admin.php?status=changesSaved" );
+    header( "Location: admin.php?action=listAtricles&status=changesSaved" );
  
   } elseif ( isset( $_POST['cancel'] ) ) {
  
     // User has cancelled their edits: return to the article list
-    header( "Location: admin.php" );
+    header( "Location: admin.php?action=listAtricles" );
   } else {
  
     // User has not posted the article edit form yet: display the form
@@ -138,7 +144,6 @@ function newArticle() {
  
 }
  
- 
 function editArticle() {
  
   $results = array();
@@ -150,7 +155,7 @@ function editArticle() {
     // User has posted the article edit form: save the article changes
  
     if ( !$article = Article::getById( (int)$_POST['articleId'] ) ) {
-      header( "Location: admin.php?error=articleNotFound" );
+      header( "Location: admin?action=listArticles&error=articleNotFound" );
       return;
     }
  
@@ -172,19 +177,16 @@ function editArticle() {
   }
  
 }
- 
- 
+
 function deleteArticle() {
  
   if ( !$article = Article::getById( (int)$_GET['articleId'] ) ) {
-    header( "Location: admin.php?error=articleNotFound" );
+    header( "Location: admin.php?action=listAtricles&error=articleNotFound" );
     return;
   }
- 
   $article->delete();
-  header( "Location: admin.php?status=articleDeleted" );
+  header( "Location: admin.php?action=listAtricles&status=articleDeleted" );
 }
- 
  
 function listArticles() {
   $results = array();
@@ -206,14 +208,13 @@ function listArticles() {
     if ( $_GET['status'] == "changesSaved" ) $results['statusMessage'] = "Your changes have been saved.";
     if ( $_GET['status'] == "articleDeleted" ) $results['statusMessage'] = "Article deleted.";
   }
- 
   require( TEMPLATE_PATH . "/admin/listArticles.php" );
 }
 
 
-/***
-* home and site tools
-**/
+/*******************************************
+*** home and site tools
+*******************************************/
 
 function home() {
 	$results['pageTitle'] = "Admin";
@@ -227,7 +228,9 @@ function siteSettings() {
 }
 
 
-
+/*******************************************
+*** Users Home
+*******************************************/
 
 function usersHome() {
 	
@@ -253,10 +256,9 @@ function usersHome() {
 }
 
 
-/*****************
-  * New User
-  *
-  ***************/
+/*******************************************
+*** New User
+*******************************************/
 
 function newUser() {
  
@@ -285,10 +287,9 @@ function newUser() {
  
 }
 
-/*****************
-  * Edits user info
-  *
-  ***************/
+/*******************************************
+*** Edit Users
+*******************************************/
 
 function editUser() {
  
@@ -333,6 +334,11 @@ function removeUser() {
 	header( "Location: admin.php?action=usersHome&status=userDeleted" );
 }
 
+
+function menu() {
+	$results['pageTitle'] = "Menu";
+	require( TEMPLATE_PATH . "/admin/menu.php");
+}
 
 function zipSite() {
 	$results['pageTitle'] = "Zip Site";

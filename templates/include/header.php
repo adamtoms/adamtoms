@@ -10,7 +10,7 @@
 	<meta name="keywords" content="Adam,toms,kite,photography,responsive,music,wed,development,jquery" />
 	<meta name="description" content="Adam Toms - Photography, Kiting and Web Development" />
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1"/> <!-- was 9 -->
-	<script>document.cookie = "device_dimensions=" + screen.width + "x" + screen.height + "; Domain=adamtoms.co.uk"; </script>
+	<script>document.cookie = "device_dimensions=" + screen.width + "x" + screen.height + "; Domain=<?php echo DOMAIN;?>"; </script>
 	<!-- <script>document.cookie = "device_dimensions=" + screen.width + "x" + screen.height;</script> http://blog.keithclark.co.uk/responsive-images-using-cookies/ -->
 </head>
 <?php flush(); ?>

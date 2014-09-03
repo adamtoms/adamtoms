@@ -2,7 +2,7 @@
 	<nav id="menuleft">
 	
 	<a class="navicon mtoggle" id="toggle-bar" href="#">Main Menu</a>
-	<!-- <img src="../images/logo.svg" style="height: 60px;margin: -13px 0 0 5%;">			
+	<!-- <img src="/images/logo.svg" style="height: 60px;margin: -13px 0 0 5%;">			
 	 <div class="sprite-logo"></div> 
 	<div class="sprite-small-logo"></div> -->
 	            

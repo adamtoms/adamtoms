@@ -1,12 +1,14 @@
 <?php include "templates/include/header.php" ?>
 
       <h1><?php echo htmlspecialchars( $results['pageHeading'] ) ?></h1>
-<?php if ( $results['category'] ) { ?>
-      <h3 class="categoryDescription"><?php echo htmlspecialchars( $results['category']->description ) ?></h3>
-<?php } ?>
-
-
+<ul class="mcontent">
+	    	<li><?php if ( $results['category'] ) { ?>
+      		<h3 class="categoryDescription"><?php echo htmlspecialchars( $results['category']->description ) ?></h3>
+			<?php } ?>
+		</li>
+</ul>
     <ul id="headlines" class="archive mcontent">
+
 <?php foreach ( $results['articles'] as $article ) { ?>
  
         <li>

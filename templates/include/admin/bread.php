@@ -1,7 +1,8 @@
 <h1><?php echo $results['pageTitle'] ?></h1>
 
 <div id="breadcrumb">
-	<p><a href="/admin">Home</a> - <?php echo htmlspecialchars( $results['pageTitle'] )?></p>
+	<p><a href="/admin">Home</a> - <?php echo htmlspecialchars( $results['category']->name )?> - 
+	<?php echo htmlspecialchars( $results['pageTitle'] )?></p>
 </div>
 
 <?php if ( isset( $results['errorMessage'] ) ) { ?>

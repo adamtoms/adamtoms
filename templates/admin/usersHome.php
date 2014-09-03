@@ -1,19 +1,6 @@
 <?php include "templates/include/admin/header.php" ?>
 <?php include'templates/include/admin/bread.php';?>
 
-
-
-<!-- set status message. this can be created as a function and called in the header on admin pages-->
-<?php if ( isset( $results['errorMessage'] ) ) { ?>
-        <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
-<?php } ?>
-
-<?php if ( isset( $results['statusMessage'] ) ) { ?>
-        <div class="statusMessage"><?php echo $results['statusMessage'] ?></div>
-<?php } ?>
-
-
-
 <ul class="mcontent">
 	<li>
     	<table>

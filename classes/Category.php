@@ -27,27 +27,6 @@ class Category
   * @var Identify the category_identifier
   */
   public $category_identifier = null;
-
- 
- 
- 
-/*
-return a category object matching the given article page_identifier
-*/
-public static function getByCategory_identifier( $page_identifier ) {
-    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "SELECT *, UNIX_TIMESTAMP(publicationDate) AS publicationDate FROM articles WHERE page_identifier = :page_identifier";
-    //added to lookup the category id too.
-    $sql = "SELECT *, FROM categories WHERE categoryName = :categoryName";   
-    $st = $conn->prepare( $sql );
-    $st->bindValue( ":page_identifier", $page_identifier, PDO::PARAM_STR );
-    $st->bindValue( ":categoryName", $categoryName, PDO::PARAM_STR );
-    $st->execute();
-    $row = $st->fetch();
-    $conn = null;
-    if ( $row ) return new Article( $row );
-  }
-
  
  
   /**
@@ -61,22 +40,9 @@ public static function getByCategory_identifier( $page_identifier ) {
     if ( isset( $data['name'] ) ) $this->name = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['name'] );
     if ( isset( $data['description'] ) ) $this->description = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['description'] );
   }
+  
  
- 
-  /**
-  * Sets the object's properties using the edit form post values in the supplied array
-  *
-  * @param assoc The form post values
-  */
- 
-  public function storeFormValues ( $params ) {
- 
-    // Store all the parameters
-    $this->__construct( $params );
-  }
- 
- 
-  /**
+/**
   * Returns a Category object matching the given category ID
   *
   * @param int The category ID
@@ -93,8 +59,46 @@ public static function getByCategory_identifier( $page_identifier ) {
     $conn = null;
     if ( $row ) return new Category( $row );
   }
+
+
+ /*
+return a Category object matching the given category Name
+*/
+  public static function getByCategoryName( $name ) {
+    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+    $sql = "SELECT * FROM categories WHERE name = :name";
+    $st = $conn->prepare( $sql );
+    $st->bindValue( ":name", $name, PDO::PARAM_STR );
+    $st->execute();
+    $row = $st->fetch();
+    $conn = null;
+    if ( $row ) return new Category( $row );
+}
+ 
+  
+ 
+
+ 
+  /**
+  * Sets the object's properties using the edit form post values in the supplied array
+  *
+  * @param assoc The form post values
+  */
+ 
+  public function storeFormValues ( $params ) {
+ 
+    // Store all the parameters
+    $this->__construct( $params );
+  }
  
  
+  
+
+  
+
+
+
+
   /**
   * Returns all (or a range of) Category objects in the DB
   *

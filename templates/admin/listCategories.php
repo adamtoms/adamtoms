@@ -3,16 +3,6 @@
 
  <ul class="mcontent">
  	<li>
- 
-<?php if ( isset( $results['errorMessage'] ) ) { ?>
-        <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
-<?php } ?>
- 
- 
-<?php if ( isset( $results['statusMessage'] ) ) { ?>
-        <div class="statusMessage"><?php echo $results['statusMessage'] ?></div>
-<?php } ?>
- 
       <table>
         <tr>
           <th>Category</th>
@@ -35,4 +25,28 @@
       <p><a href="admin.php?action=newCategory">Add a New Category</a></p>
  </li> 
  </ul>
+
+<ul class="homepage-grid" style="margin: 0 5% 0;">
+	<li>
+		<a href="<?php DOMAIN; ?>/admin.php?action=newCategory">
+			<i class="icon-plus-circle"></i>
+			<h2>New Category</h2>
+			<p>Create a new category.</p>
+		</a>
+	</li>
+	<li>
+		<a href="<?php DOMAIN; ?>/?action=archive&categoryId=2">
+			<i class="icon-popup"></i>
+			<h2>View Category</h2>
+			<p>All documents in specified category</p>
+		</a>
+	</li>
+	<li>
+		<a href="<?php DOMAIN; ?>/admin.php?action=editCategory&categoryId=1">
+			<i class="icon-cog-alt"></i>
+			<h2>Edit Category</h2>
+			<p>http://adamtoms.co.uk/admin.php?action=editCategory&categoryId=1</p>
+		</a>
+	</li>
+</ul>
 <?php include "templates/include/admin/footer.php" ?>

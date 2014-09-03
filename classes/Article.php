@@ -59,7 +59,7 @@ class Article
     if ( isset( $data['summary'] ) ) $this->summary = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['summary'] );
     if ( isset( $data['content'] ) ) $this->content = $data['content'];
 	if ( isset( $data['page_identifier'] ) ) $this->page_identifier = $data['page_identifier'];
-     /* added page_identifier to the array */
+     /* added page_identifier and cat indetifier to the array */
   }
  
  
@@ -118,7 +118,7 @@ public static function getBypage_identifier( $page_identifier ) {
     $conn = null;
     if ( $row ) return new Article( $row );
   }
-
+  
 
 
   /**

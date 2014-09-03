@@ -1,14 +1,23 @@
 <?php include "templates/include/admin/header.php" ?>
 <?php include "templates/include/admin/bread.php" ?>
- 
-<?php if ( isset( $results['errorMessage'] ) ) { ?>
-        <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
-<?php } ?>
- 
- 
-<?php if ( isset( $results['statusMessage'] ) ) { ?>
-        <div class="statusMessage"><?php echo $results['statusMessage'] ?></div>
-<?php } ?>
+
+<ul class="homepage-grid">
+	<li>
+		<a href="<?php DOMAIN; ?>/admin.php?action=newArticle">
+			<i class="icon-plus-circle"></i>
+			<h2>New Article</h2>
+			<p>Create a new page.</p>
+		</a>
+	</li>
+	<li>
+		<a href="<?php DOMAIN; ?>/?action=archive">
+			<i class="icon-archive"></i>
+			<h2>Archive</h2>
+			<p>View all published articles</p>
+		</a>
+	</li>
+</ul>
+	
   <ul class="mcontent">
  	<li>
       <table>
