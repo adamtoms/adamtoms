@@ -63,9 +63,18 @@ switch ( $action ) {
   	removeUser();
   	break;
 //Homepages
-	case 'newHomepage':
+  case 'newHomepage':
 	newHomepage();
-	break;	
+	break;
+  case 'editHomepage':
+	editHomepage();
+	break;
+  case 'deleteHomepage':
+	deleteHomepage();
+	break;
+  case 'listHomepages':
+  	listHomepages();
+  	break;
 //misc
   case 'siteSettings':
   	siteSettings();
@@ -132,12 +141,12 @@ function newArticle() {
     $article = new Article;
     $article->storeFormValues( $_POST );
     $article->insert();
-    header( "Location: admin?action=listArticles&status=changesSaved" );
+    header( "Location: admin.php?action=listArticles&status=changesSaved" );
  
   } elseif ( isset( $_POST['cancel'] ) ) {
  
     // User has cancelled their edits: return to the article list
-    header( "Location: admin?action=listArticles" );
+    header( "Location: admin.php?action=listArticles" );
   } else {
  
     // User has not posted the article edit form yet: display the form
@@ -471,32 +480,112 @@ function deleteCategory() {
 function newHomepage() {
  
   $results = array();
-  $results['pageTitle'] = "New Article";
-  $results['formAction'] = "newArticle";
+  $results['pageTitle'] = "New Homepage";
+  $results['formAction'] = "newHomepage";
   
   if ( isset( $_POST['saveChanges'] ) ) {
  
     // User has posted the article edit form: save the new article
-    $article = new Article;
-    $article->storeFormValues( $_POST );
-    $article->insert();
-    header( "Location: admin?action=listArticles&status=changesSaved" );
+    $homepage = new Homepage;
+    $homepage->storeHomepageFormValues( $_POST );
+    $homepage->insert();
+    header( "Location: admin.php?action=listHomepages&status=changesSaved" );
  
   } elseif ( isset( $_POST['cancel'] ) ) {
  
     // User has cancelled their edits: return to the article list
-    header( "Location: admin?action=listArticles" );
+    header( "Location: admin.php?action=listHomepages" );
   } else {
  
     // User has not posted the article edit form yet: display the form
-    $results['article'] = new Article;
+    $results['hompages'] = new Homepage;
     
     $data = Category::getList();
     $results['categories'] = $data['results'];
     
-    require( TEMPLATE_PATH . "/admin/editArticle.php" );
+    require( TEMPLATE_PATH . "/admin/editHomepage.php" );
   }
  
 }
+
+/*******************************************
+*** Edit Homepage
+*******************************************/
+
+function editHomepage() {
+ 
+  $results = array();
+  $results['pageTitle'] = "Edit Homepage";
+  $results['formAction'] = "editHomepage";
+ 
+  if ( isset( $_POST['saveChanges'] ) ) {
+ 
+    // User has posted the article edit form: save the article changes
+ 
+    if ( !$homepage = Homepage::getByHomepageId( (int)$_POST['homepageId'] ) ) {
+      header( "Location: admin?action=listHomepages&error=articleNotFound" );
+      return;
+    }
+ 
+    $homepage->storeHomepageFormValues( $_POST );
+    $homepage->update();
+    header( "Location: admin.php?action=listHomepages&status=changesSaved" );
+ 
+  } elseif ( isset( $_POST['cancel'] ) ) {
+ 
+    // User has cancelled their edits: return to the article list
+    header( "Location: admin.php?action=listArticles" );
+  } else {
+ 
+    // User has not posted the article edit form yet: display the form
+    $results['homepages'] = Homepage::getByHomepageId( (int)$_GET['homepageId'] );
+    $data = Category::getList();
+    $results['categories'] = $data['results'];
+    require( TEMPLATE_PATH . "/admin/editHomepage.php" );
+  }
+ 
+}
+
+/*******************************************
+*** delete Homepage
+*******************************************/
+function deleteHomepage() {
+ 
+  if ( !$homepage = Homepage::getByHomepageId( (int)$_GET['homepageId'] ) ) {
+    header( "Location: admin.php?action=listHomepage&error=homepageNotFound" );
+    return;
+  }
+  $homepage->delete();
+  header( "Location: admin.php?action=listHomepages&status=homepageDeleted" );
+}
+
+/*******************************************
+*** List Homepage
+*******************************************/
+function listHomepages() {
+  $results = array();
+  $hpData = Homepage::getList();
+  $results['homepages'] = $hpData['results'];
+  $results['totalRows'] = $hpData['totalRows'];
+  
+  $data = Category::getList();
+  $results['categories'] = array();
+  foreach ( $data['results'] as $category ) $results['categories'][$category->id] = $category;
+  
+  $results['pageTitle'] = "All Homepages";
+  //$results['adminBread'] = "New Article";
+ 
+  if ( isset( $_GET['error'] ) ) {
+    if ( $_GET['error'] == "articleNotFound" ) $results['errorMessage'] = "Error: Article not found.";
+  }
+ 
+  if ( isset( $_GET['status'] ) ) {
+    if ( $_GET['status'] == "changesSaved" ) $results['statusMessage'] = "Your changes have been saved.";
+    if ( $_GET['status'] == "articleDeleted" ) $results['statusMessage'] = "Article deleted.";
+  }
+  require( TEMPLATE_PATH . "/admin/listHomepages.php" );
+}
+
+
 
 ?>

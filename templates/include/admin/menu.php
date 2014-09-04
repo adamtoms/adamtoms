@@ -20,7 +20,7 @@
 		</div>
 
 		<ul id="mmenu">
-			<li><a href="<?php DOMAIN; ?>/admin" style="display:block;">Home</a></li>
+			<li><a href="<?php DOMAIN; ?>/admin.php" style="display:block;">Home</a></li>
 		    <li><a href="<?php DOMAIN; ?>/">Live</a></li>
 		</ul> 
            

@@ -5,9 +5,9 @@
 		
 		<!--http://adamtoms.co.uk/?action=viewCategoryNameandArticle&categoryName=events&page_identifier=contact-->
 				
-		<p>Cat ID:<?php echo htmlspecialchars( $results['category']->id )?></p>
-		<p>Cat Name:<?php echo htmlspecialchars( $results['category']->name )?></p>
-		<p>Cat Description:<?php echo htmlspecialchars( $results['category']->description )?></p>
+		<p style="display: none">Cat ID:<?php echo htmlspecialchars( $results['category']->id )?></p>
+		<p style="display: none">Cat Name:<?php echo htmlspecialchars( $results['category']->name )?></p>
+		<p style="display: none">Cat Description:<?php echo htmlspecialchars( $results['category']->description )?></p>
 		
 		
 		<p><?php echo htmlspecialchars( $results['article']->summary )?></p>

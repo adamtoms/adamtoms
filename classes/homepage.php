@@ -68,7 +68,7 @@ class Homepage
   * @param assoc The form post values
   */
  
-  public function storeUserFormValues ( $params ) {
+  public function storeHomepageFormValues ( $params ) {
  
     // Store all the parameters
     $this->__construct( $params );

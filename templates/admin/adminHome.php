@@ -17,6 +17,13 @@
 		</a>
 	</li>
 	<li>
+		<a href="/admin.php?action=listHomepages">
+			<i class="icon-home"></i>
+			<h2>Homepages</h2>
+			<p>Edit the sites homepages</p>
+		</a>
+	</li>
+	<li>
 		<a href="/admin.php?action=usersHome">
 			<i class="icon-users"></i>
 			<h2>Users</h2>
@@ -31,13 +38,6 @@
 		</a>
 	</li>
 	<li>
-		<a href="/admin.php?action=menu">
-			<i class="icon-stackoverflow"></i>
-			<h2>Main Menu</h2>
-			<p>Edit the frontpage menu</p>
-		</a>
-	</li>
-	<li>
 		<a href="<?php DOMAIN; ?>/admin.php?action=logout">
 			<i class="icon-lock-open"></i>
 			<h2>Log Out</h2>
@@ -49,11 +49,13 @@
 <code>
 	<a href="http://adamtoms.co.uk/?action=viewHomepageName&page_identifier=about">View homepage</a>
 	<br>
-	new homepage
+	<a href="http://adamtoms.co.uk/admin.php?action=newHomepage">new homepage</a>
 	<br>
-	edit homepage
+	<a href="http://adamtoms.co.uk/admin.php?action=editHomepage&homepageId=1">edit homepage</a>
 	<br>
-	remove homepage
+	<a href="admin.php?action=deleteHomepage&amp;homepageId=1">remove homepage</a>
+	<br>
+	<a href="admin.php?action=listHomepages">List Homepages</a>
 	<br>I should beable to echo a list of all homepage names, much like i did with the categories. this could then be used to populate the menu? not best soloution.
 </code>
 

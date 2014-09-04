@@ -2,7 +2,7 @@
 
 <div id="breadcrumb">
 	<p>
-		<a href="/admin">Home</a>
+		<a href="/admin.php">Home</a>
 		- 
 		<a 
 		href="<?php DOMAIN;?>/<?php echo htmlspecialchars( $results['category']->name )?>"

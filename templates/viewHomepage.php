@@ -7,7 +7,7 @@
 		<p style="display:none;">Category ID:<?php echo htmlspecialchars( $results['homepages']->categoryId )?></p>
 		
 		<p><?php echo htmlspecialchars( $results['homepages']->summary )?></p>
-		<div><?php echo htmlspecialchars( $results['homepages']->content )?></div>
+		<div><?php echo ( $results['homepages']->content )?></div>
 		<h3><?php echo htmlspecialchars( $results['homepages']->page_identifier )?></h3>
 		
 		<!-- set this as the page title --><?php echo htmlspecialchars( $results['category']->name )?>
