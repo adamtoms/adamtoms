@@ -3,14 +3,14 @@
 
 <ul class="homepage-grid">
 	<li>
-		<a href="<?php DOMAIN; ?>/admin?action=listArticles">
+		<a href="<?php DOMAIN; ?>/admin.php?action=listArticles">
 			<i class="icon-popup"></i>
 			<h2>Articles</h2>
 			<p><a href="/admin.php?action=newArticle">New Article</a>, Edit Article, View Articles</p>
 		</a>
 	</li>	
 	<li>
-		<a href="<?php DOMAIN; ?>/admin?action=listCategories">
+		<a href="<?php DOMAIN; ?>/admin.php?action=listCategories">
 			<i class="icon-th-large"></i>
 			<h2>Categories</h2>
 			<p>Organise your content.</p>
@@ -46,5 +46,15 @@
 	</li>
 </ul>
 
+<code>
+	<a href="http://adamtoms.co.uk/?action=viewHomepageName&page_identifier=about">View homepage</a>
+	<br>
+	new homepage
+	<br>
+	edit homepage
+	<br>
+	remove homepage
+	<br>I should beable to echo a list of all homepage names, much like i did with the categories. this could then be used to populate the menu? not best soloution.
+</code>
 
 <?php include "templates/include/admin/footer.php" ?>

@@ -27,7 +27,7 @@
 		</a>
 	</li>
 	<li>
-		<a href="<?php DOMAIN; ?>/admin?action=zipSite">
+		<a href="<?php DOMAIN; ?>/admin.php?action=zipSite">
 			<i class="icon-download-cloud"></i>
 			<h2>Zip</h2>
 			<p>Zips the home Dir</p>

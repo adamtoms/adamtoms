@@ -3,7 +3,7 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require('$root/../../config.php');
 
 $action = isset( $_GET['action'] ) ? $_GET['action'] : "";
- 
+
 switch ( $action ) {
   case 'archive':
     archive();
@@ -25,6 +25,12 @@ switch ( $action ) {
   	break;
   case 'viewCategoryNameandArticle':
   	viewCategoryNameandArticle();
+  	break;
+  case 'viewHomepage':
+  	viewHomepage();
+  	break;
+  case 'viewHomepageName':
+  	viewHomepageName();
   	break;
   default:
     homepage();
@@ -172,6 +178,43 @@ function viewCategoryName() {
 	
 }
 
+
+
+
+
+
+
+/***********
+ * return a homepage from the DB. The first lookup isnt needed as it looksup by ID.
+ *
+function viewHomepage() {
+	
+  if ( !isset($_GET["homepageId"]) || !$_GET["homepageId"] ) {
+    homepage();
+    return;
+  }
+ 
+  $results = array();
+  $results['homepages'] = Homepage::getByHomepageId( (int)$_GET["homepageId"] );
+  $results['category'] = Category::getById( $results['homepages']->categoryId );
+  $results['pageTitle'] = $results['homepages']->title . "";
+  require( TEMPLATE_PATH . "/viewHomepage.php" );
+}
+*/
+
+/* pull from article using page identifier */
+function viewHomepageName() {
+  if ( !isset($_GET["page_identifier"]) || !$_GET["page_identifier"] ) {
+    homepage();
+    return;
+  }
+  $results = array();
+  $results['homepages'] = Homepage::getByHomepage_name( $_GET["page_identifier"] );
+  $results['category'] = Category::getById( $results['homepages']->categoryId );
+  
+  $results['pageTitle'] = $results['homepages']->title . " | Adam Toms";
+  require( TEMPLATE_PATH . "/viewHomepage.php" );
+}
 
 
 ?>

@@ -19,6 +19,7 @@ switch ( $action ) {
   case 'logout':
     logout();
     break;
+//articles    
   case 'newArticle':
     newArticle();
     break;
@@ -28,11 +29,14 @@ switch ( $action ) {
   case 'deleteArticle':
     deleteArticle();
     break;
-    
+  case 'listArticles':
+    listArticles();
+    break;
+//menu   
   case 'menu':
   	menu();
   	break;
-    
+//categories
     case 'listCategories':
     listCategories();
     break;
@@ -45,10 +49,7 @@ switch ( $action ) {
   case 'deleteCategory':
     deleteCategory();
     break;
-    
-  case 'listArticles':
-    listArticles();
-    break;
+//users
   case 'usersHome':
     usersHome();
   	break;
@@ -61,6 +62,11 @@ switch ( $action ) {
   case 'removeUser':
   	removeUser();
   	break;
+//Homepages
+	case 'newHomepage':
+	newHomepage();
+	break;	
+//misc
   case 'siteSettings':
   	siteSettings();
   	break;
@@ -126,12 +132,12 @@ function newArticle() {
     $article = new Article;
     $article->storeFormValues( $_POST );
     $article->insert();
-    header( "Location: admin.php?action=listAtricles&status=changesSaved" );
+    header( "Location: admin?action=listArticles&status=changesSaved" );
  
   } elseif ( isset( $_POST['cancel'] ) ) {
  
     // User has cancelled their edits: return to the article list
-    header( "Location: admin.php?action=listAtricles" );
+    header( "Location: admin?action=listArticles" );
   } else {
  
     // User has not posted the article edit form yet: display the form
@@ -459,6 +465,38 @@ function deleteCategory() {
 
 
 
-
+/*******************************************
+*** New Homepage
+*******************************************/
+function newHomepage() {
+ 
+  $results = array();
+  $results['pageTitle'] = "New Article";
+  $results['formAction'] = "newArticle";
+  
+  if ( isset( $_POST['saveChanges'] ) ) {
+ 
+    // User has posted the article edit form: save the new article
+    $article = new Article;
+    $article->storeFormValues( $_POST );
+    $article->insert();
+    header( "Location: admin?action=listArticles&status=changesSaved" );
+ 
+  } elseif ( isset( $_POST['cancel'] ) ) {
+ 
+    // User has cancelled their edits: return to the article list
+    header( "Location: admin?action=listArticles" );
+  } else {
+ 
+    // User has not posted the article edit form yet: display the form
+    $results['article'] = new Article;
+    
+    $data = Category::getList();
+    $results['categories'] = $data['results'];
+    
+    require( TEMPLATE_PATH . "/admin/editArticle.php" );
+  }
+ 
+}
 
 ?>
