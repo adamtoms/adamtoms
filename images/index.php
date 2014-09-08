@@ -41,6 +41,21 @@
 
 ?>
  
+<?php 
+echo $file;
+echo $device_width;
+echo $device_height;
+
+    if (isset($_COOKIE['device_dimensions'])) {
+      $dimensions = explode('x', $_COOKIE['device_dimensions']);
+      if (count($dimensions)==2) {
+        $device_width = intval($dimensions[0]);
+        $device_height = intval($dimensions[1]);
+      }
+    }
+
+
+?>
 <?php echo '
 
 <div style="margin:10%;">

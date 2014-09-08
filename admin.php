@@ -104,7 +104,7 @@ function login() {
  
       // Login successful: Create a session and redirect to the admin homepage
       $_SESSION['username'] = ADMIN_USERNAME;
-      header( "Location: admin" );
+      header( "Location: admin.php" );
  
     } else {
  
@@ -123,7 +123,7 @@ function login() {
  
 function logout() {
   unset( $_SESSION['username'] );
-  header( "Location: admin" );
+  header( "Location: admin.php" );
 }
  
 /*******************************************
@@ -197,11 +197,11 @@ function editArticle() {
 function deleteArticle() {
  
   if ( !$article = Article::getById( (int)$_GET['articleId'] ) ) {
-    header( "Location: admin.php?action=listAtricles&error=articleNotFound" );
+    header( "Location: admin.php?action=listArticles&error=articleNotFound" );
     return;
   }
   $article->delete();
-  header( "Location: admin.php?action=listAtricles&status=articleDeleted" );
+  header( "Location: admin.php?action=listArticles&status=articleDeleted" );
 }
  
 function listArticles() {

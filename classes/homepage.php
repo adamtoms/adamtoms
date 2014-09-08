@@ -1,7 +1,7 @@
 <?php
  
 /**
- * Class to handle articles
+ * Class to handle homepages
  */
  
 class Homepage
@@ -13,27 +13,27 @@ class Homepage
   public $id = null;
  
   /**
-  * @var int When the article was published
+  * @var int When the Homepage was published
   */
   public $publicationDate = null;
  
   /**
-  * @var int The article category ID
+  * @var int The homepage category ID
   */
   public $categoryId = null;
  
   /**
-  * @var string Full title of the article
+  * @var string Full title of the homepage
   */
   public $title = null;
  
   /**
-  * @var string A short summary of the article
+  * @var string A short summary of the homepage
   */
   public $summary = null;
  
   /**
-  * @var string The HTML content of the article
+  * @var string The HTML content of the homepage
   */
   public $content = null;
   
@@ -105,7 +105,7 @@ class Homepage
 
 
 /*
-return an article object matching the given article page_identifier
+return a homepage object matching the given homepage page_identifier
 */
 public static function getByHomepage_name( $page_identifier ) {
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
@@ -115,13 +115,19 @@ public static function getByHomepage_name( $page_identifier ) {
     $st->execute();
     $row = $st->fetch();
     $conn = null;
-    if ( $row ) return new Homepage( $row );
+    if( ! $row)
+	{
+		header("Status: 404 Not Found");
+		include_once("404.html");
+		die ("Error" . " File: " . __FILE__ . " on line: " . __LINE__); 
+	}
+   else if ( $row ) return new Homepage( $row );
   }
   
 
 
   /**
-  * Returns all (or a range of) Article objects in the DB
+  * Returns all (or a range of) Homepage objects in the DB
   *
   * @param int Optional The number of rows to return (default=all)
   * @param int Optional Return just articles in the category with this ID
@@ -155,15 +161,15 @@ public static function getByHomepage_name( $page_identifier ) {
  
  
   /**
-  * Inserts the current Article object into the database, and sets its ID property.
+  * Inserts the current Homepage object into the database, and sets its ID property.
   */
  
   public function insert() {
  
-    // Does the Article object already have an ID?
+    // Does the Homepage object already have an ID?
     if ( !is_null( $this->id ) ) trigger_error ( "Homepage::insert(): Attempt to insert an Article object that already has its ID property set (to $this->id).", E_USER_ERROR );
  
-    // Insert the Article
+    // Insert the Homepage
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
     
 $sql = "INSERT INTO homepages ( publicationDate, categoryId, title, summary, content, page_identifier) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content, :page_identifier)";

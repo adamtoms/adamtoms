@@ -1,16 +1,15 @@
 RewriteEngine On
 
-RewriteRule ^pages/([a-z0-9,&-]+)/?$ ?action=viewArticleName&page_identifier=$1 [L,NC,QSA,B]
+#RewriteRule ^pages/([a-z0-9,&-]+)/?$ ?action=viewArticleName&page_identifier=$1 [L,NC,QSA,B]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/([^/]+)/?$ /?action=viewCategoryName&categoryName=$1&page_identifier=$2 [L,QSA]
+RewriteRule ^([^/]+)/([^/]+)/?$ /?action=viewCategoryName&categoryName=$1&page_identifier=$2 [L,QSA,B]
 
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA]
-
+RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA,B]
 
 
 RewriteCond %{REQUEST_FILENAME} !-d

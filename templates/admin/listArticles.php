@@ -25,6 +25,7 @@
           <th>Publication Date</th>
           <th>Article</th>
           <th>Category</th>
+          <th></th>
         </tr>
  
 <?php foreach ( $results['articles'] as $article ) { ?>
@@ -36,6 +37,9 @@
           </td>
            <td>
             <?php echo $results['categories'][$article->categoryId]->name?>
+          </td>
+          <td style="width: 8%;">
+          	<a href="<?php echo $results['categories'][$article->categoryId]->name?>/<?php echo $article->title?>">View Live</a>
           </td>
         </tr>
  

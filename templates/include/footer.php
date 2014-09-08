@@ -18,13 +18,13 @@
 	<li>
 		<i class="icon-phone"></i>
 		<div class="footer-text">
-			<a href="/pages/membership">Membership</a>
+			<a href="/membership">Membership</a>
 		</div>
 	</li>
 	<li>
 		<i class="icon-summersessions"></i>
 		<div class="footer-text">
-			<a href="/pages/events">Summer Sessions</a>
+			<a href="/events">Summer Sessions</a>
 		</div>
 	</li>	
 	<li>
@@ -44,15 +44,12 @@
 	<li><a href="/about/links">Links</a></li>
 	<li><a href="/about/terms-&amp;-disclaimer">Terms and Conditions</a></li>
 	<li><a href="<?php echo DOMAIN; ?>/?action=archive">Article Archive</a></li>
-	<li><a href="/admin">Login</a></li>
+	<li><a href="/admin.php">Login</a></li>
 </ul>
 
 
-
-
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="<?php DOMAIN; ?>/templates/include/scripts/core.js"></script>
+<script type="text/javascript" src="<?php echo DOMAIN; ?>/templates/include/scripts/core.js"></script>
 <!--<script>window.jQuery || document.write('<script src="/site/javascript/vendor/jquery-1.9.1.min.js"><\/script>')</script>-->
 </div>
 <div id="back-top" class="icon-up-outline"></div>
