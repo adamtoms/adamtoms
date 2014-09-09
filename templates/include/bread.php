@@ -8,10 +8,10 @@
 		href="<?php DOMAIN;?>/<?php echo htmlspecialchars( $results['category']->name )?>"
 		title="<?php echo htmlspecialchars( $results['category']->description )?>"
 		>
-			<?php echo htmlspecialchars( $results['category']->name )."-"?>
-			<?php echo $results['adminBread'] ."-"?>
+			<?php echo htmlspecialchars( $results['category']->name ).""?>
+			<?php echo $results['adminBread'] .""?>
 		</a>
-		 
+		 -
 		<?php echo htmlspecialchars( $results['pageTitle'] )?>
 	</p>
 </div>

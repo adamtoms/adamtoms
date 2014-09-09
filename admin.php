@@ -33,8 +33,11 @@ switch ( $action ) {
     listArticles();
     break;
 //menu   
-  case 'menu':
-  	menu();
+  case 'menuHome':
+  	menuHome();
+  	break;
+  case 'newMenu':
+  	newMenu();
   	break;
 //categories
     case 'listCategories':
@@ -86,7 +89,7 @@ switch ( $action ) {
     home();
 }
  
- 
+
 /*******************************************
 *** Login/Out
 *******************************************/
@@ -351,10 +354,7 @@ function removeUser() {
 }
 
 
-function menu() {
-	$results['pageTitle'] = "Menu";
-	require( TEMPLATE_PATH . "/admin/menu.php");
-}
+
 
 function zipSite() {
 	$results['pageTitle'] = "Zip Site";
@@ -586,5 +586,57 @@ function listHomepages() {
 }
 
 
+/*******************************************
+*** Menu Home
+*******************************************/
+
+function menuHome() {
+	
+  $results = array();
+  $menuData = menus::getMenuList();
+  $results['menus'] = $menuData['results'];
+  $results['name'] = $menuData['name'];
+  $results['id'] = "id";
+  $results['totalRows'] = $menuData['totalRows'];
+  $results['pageTitle'] = "Menus";
+
+//add in the error messages. 
+	
+	require( TEMPLATE_PATH . "/admin/menuHomepage.php");
+}
+
+/*******************************************
+*** New Menu
+*******************************************/
+function newMenu() {
+ 
+  $results = array();
+  $results['pageTitle'] = "New Menu";
+  $results['formAction'] = "newHomepage";
+  
+  if ( isset( $_POST['saveChanges'] ) ) {
+ 
+    // User has posted the article edit form: save the new article
+    $homepage = new Homepage;
+    $homepage->storeHomepageFormValues( $_POST );
+    $homepage->insert();
+    header( "Location: admin.php?action=listHomepages&status=changesSaved" );
+ 
+  } elseif ( isset( $_POST['cancel'] ) ) {
+ 
+    // User has cancelled their edits: return to the article list
+    header( "Location: admin.php?action=listHomepages" );
+  } else {
+ 
+    // User has not posted the article edit form yet: display the form
+    $results['hompages'] = new Homepage;
+    
+    $data = Category::getList();
+    $results['categories'] = $data['results'];
+    
+    require( TEMPLATE_PATH . "/admin/editHomepage.php" );
+  }
+ 
+}
 
 ?>

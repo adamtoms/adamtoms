@@ -1,6 +1,6 @@
 <?php include "templates/include/header.php" ?>
  <ul class="mcontent">
- 	<li><?php include "templates/include/admin/bread.php" ?></li>
+ 	<li><?php include "templates/include/bread.php" ?></li>
 	<li>
 		
 		<!--http://adamtoms.co.uk/?action=viewCategoryNameandArticle&categoryName=events&page_identifier=contact-->

@@ -1,7 +1,7 @@
 <?php
 
 
-$GlobalSettings = [
+/*$GlobalSettings = [
     "DbUser" => "foo",
     "DbPassword" => "bar",
     "Root" => $_SERVER['DOCUMENT_ROOT'],
@@ -13,7 +13,7 @@ $GlobalSettings = [
 //Then you have total clarity, and to access them:
 $GlobalSettings["Root"];
 // the above method is good, however will have to be edited over FTP. If i create a class and a DB I can change all of these from one page/multiple locations.
-
+*/
 
  
 /**
