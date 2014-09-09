@@ -6,7 +6,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/]+)/([^/]+)/?$ /?action=viewCategoryName&categoryName=$1&page_identifier=$2 [L,QSA,B]
 
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA,B]
@@ -20,7 +19,15 @@ RewriteRule ^(.*)$ $1.php [L]
 RewriteCond %{HTTP_HOST} ^www\.adamtoms\.co.uk$
 RewriteRule ^/?$ "http\:\/\/adamtoms\.co.uk\/" [R=301,L]
 
+RewriteCond %{HTTP_HOST} ^r\.adamtoms\.co\.uk$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.r\.adamtoms\.co\.uk$
+RewriteRule ^/?$ "http\:\/\/adamtoms\.co\.uk" [R=301,L]
+
+#Redirect 301 /old-file.html http://www.domain.com/new-file.html
+    
+
 #Force admin over https
+
 
 #Blocks known useragent/bot
 RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
@@ -135,8 +142,4 @@ Options -Indexes
 # Since we`re sending far-future expires, we don't need ETags for static content.
 # developer.yahoo.com/performance/rules.html#etags
 FileETag None
-
-RewriteCond %{HTTP_HOST} ^r\.adamtoms\.co\.uk$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.r\.adamtoms\.co\.uk$
-RewriteRule ^/?$ "http\:\/\/adamtoms\.co\.uk" [R=301,L]
 
