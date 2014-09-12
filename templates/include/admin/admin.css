@@ -351,7 +351,8 @@ width: 90%;
 display: block;
 position: relative;
 width: auto;
-margin-top: -22px;
+/*margin-top: -22px;*/
+line-height: 0;
 margin-bottom: -21px;
 text-align: center;
 color: inherit;}

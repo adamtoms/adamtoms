@@ -1,19 +1,19 @@
 RewriteEngine On
 
-#RewriteRule ^pages/([a-z0-9,&-]+)/?$ ?action=viewArticleName&page_identifier=$1 [L,NC,QSA,B]
+#the [L] stops the rewrite rule, then start again below
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
 
-RewriteCond %{REQUEST_FILENAME} !-f
+#remove .php from files
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1\.php -f [NC]
+RewriteRule ^(.+?)/?$ /$1.php [L]
+
 RewriteRule ^([^/]+)/([^/]+)/?$ /?action=viewCategoryName&categoryName=$1&page_identifier=$2 [L,QSA,B]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA,B]
 
 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php [L]
 
 #Eliminates canonicalization 
 RewriteCond %{HTTP_HOST} ^www\.adamtoms\.co.uk$
@@ -23,8 +23,7 @@ RewriteCond %{HTTP_HOST} ^r\.adamtoms\.co\.uk$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.r\.adamtoms\.co\.uk$
 RewriteRule ^/?$ "http\:\/\/adamtoms\.co\.uk" [R=301,L]
 
-#Redirect 301 /old-file.html http://www.domain.com/new-file.html
-    
+
 
 #Force admin over https
 
@@ -37,6 +36,14 @@ RewriteRule .* – [F,L]
 Options -Indexes
 #DirectoryIndex index.php # Redirects to a page
 #IndexOptions +FancyIndexing # Fancy dirs!
+
+<IfModule mod_headers.c>
+  <FilesMatch ".(js|css|xml|gz|html)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule>
+
+
 
   <IfModule mod_deflate.c>
 

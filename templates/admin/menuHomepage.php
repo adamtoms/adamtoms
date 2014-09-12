@@ -14,12 +14,11 @@
         </tr>
         
         <?php foreach ( $results['menus'] as $menu ) { ?>
-        
-        <tr  onclick="location='admin.php?action=editHomepage&amp;homepageId=<?php echo $menu->id?>'">
+        <tr  onclick="location='admin.php?action=editMenu&amp;menuId=<?php echo $menu->id?>'">
         	<td><?php echo $menu->name ?></td>
         	<td><?php echo $menu->child?></td>
 			<td><?php echo $menu->id?></td>
-			<td><?php echo $menu->order?></td>
+			<td><?php echo $menu->itemOrder?></td>
 			<td><?php echo $menu->live?></td>
 			<?php  /*echo $results['categories'][$article->categoryId]->name*/ ?>
         </tr>

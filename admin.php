@@ -32,12 +32,12 @@ switch ( $action ) {
   case 'listArticles':
     listArticles();
     break;
-//menu   
+//menu
   case 'menuHome':
   	menuHome();
   	break;
   case 'newMenu':
-  	newMenu();
+  	newMenu;
   	break;
 //categories
     case 'listCategories':
@@ -608,35 +608,37 @@ function menuHome() {
 /*******************************************
 *** New Menu
 *******************************************/
+
 function newMenu() {
- 
+	 
   $results = array();
-  $results['pageTitle'] = "New Menu";
-  $results['formAction'] = "newHomepage";
+  $results['pageTitle'] = "New Article";
+  $results['formAction'] = "newArticle";
   
   if ( isset( $_POST['saveChanges'] ) ) {
  
     // User has posted the article edit form: save the new article
-    $homepage = new Homepage;
-    $homepage->storeHomepageFormValues( $_POST );
-    $homepage->insert();
-    header( "Location: admin.php?action=listHomepages&status=changesSaved" );
+    $article = new Article;
+    $article->storeFormValues( $_POST );
+    $article->insert();
+    header( "Location: admin.php?action=listArticles&status=changesSaved" );
  
   } elseif ( isset( $_POST['cancel'] ) ) {
  
     // User has cancelled their edits: return to the article list
-    header( "Location: admin.php?action=listHomepages" );
+    header( "Location: admin.php?action=listArticles" );
   } else {
  
     // User has not posted the article edit form yet: display the form
-    $results['hompages'] = new Homepage;
+    $results['article'] = new Article;
     
     $data = Category::getList();
     $results['categories'] = $data['results'];
     
-    require( TEMPLATE_PATH . "/admin/editHomepage.php" );
+    require( TEMPLATE_PATH . "/admin/editArticle.php" );
   }
  
 }
+
 
 ?>

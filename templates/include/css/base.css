@@ -32,7 +32,12 @@ div,span,object,h1,h2,h5,h6,blockquote,a,acronym,address,big,cite,code,del,font,
 	padding: 0;
 	outline: 0;
 	}
+
+/*fix for white space at footer*/
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body{min-height: inherit !important;}}
+
 body {
+	width: auto;
 	display: -moz-box;/* display: -ms-flexbox;*/
 	display: flex; 
 	min-height: 100vh;
@@ -41,6 +46,9 @@ body {
 	margin:0;
 	padding:0;
 	background: none repeat scroll 0% 0% rgb(255, 255, 255); /* #EFE9E5*/
+	word-wrap: break-word; /*Stops long urls or words breaking out of container*/
+
+	
 }
 section{
 	float:left;
@@ -191,6 +199,18 @@ footer{
 	float:left; 
 	}
 .footer-right{display:none;}
+
+.footer-right li{
+	float: left;
+/*	display: inline-block; */
+    background-color: rgb(140, 140, 140);
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px;
+    color:black;
+    list-style:none;
+}
+
 #footer-list li:nth-last-child(1){font-size: 0.7em;padding: 5px 0 0;transition: all 2s ease 0s;}
 #footer-list li:hover:nth-last-child(1){transition: all 2s ease 0s;}
 .fb-like-box, .fb-like-box span, .fb-like-box span iframe[style] { width: 100% !important; } /* ? */
@@ -388,8 +408,9 @@ text-align:center;
    ========================================================================== */
 @media screen and (min-width: 641px) 
 {
+
 	
-	#mmenu > li:nth-child(1) > a:nth-child(1) {display:none;} /* hides the home menu for less cluttered hp */
+#mmenu > li:nth-child(1) > a:nth-child(1) {display:none;} /* hides the home menu for less cluttered hp */
 
 ul#footer-list li i{	
 float: left;
@@ -447,9 +468,25 @@ ul#mmenu{display:inline !important;list-style-type:none;float:right;}
 /* footer */
 #footer-list{float: left;display: block;width: 50%;}
 #footer-list > li:hover {color:white;transition:0.3s;}
-.footer-right{float: left;display: block;width: 50%;list-style: circle;margin: 2% 0 0 0;cursor:pointer;font-size: 1.2em;}
-.footer-right li{margin: 0 0 0 65px;color: #8C8C8C;text-decoration: none;}
+
+.footer-right{float: left;display: block;width: 50%;margin: 2% 0 0 0;cursor:pointer;font-size: 1.2em;}
+.footer-right li{
+	margin: 0 0 0 65px;
+	color: #8C8C8C;
+	text-decoration: none;
+	background-color: transparent;
+	float: left;
+/*	display: block;*/
+	padding:2px;
+	list-style: circle;
+	width:100%;
+	}
 .footer-right li:hover{color:white;transition:0.3s;}
+
+
+
+
+
 #footer-wrap{margin: 0 2.5%;}
 #footer-list > li{margin: 2% 0px 0px 5%;line-height: 50px;font-size: 1.7em;font-weight: 100;cursor: pointer;transition: 0.7s;}
 #foot-viewMore{display: none;}	

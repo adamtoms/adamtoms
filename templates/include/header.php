@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="<?php echo DOMAIN; ?>/templates/include/css/base.css" rel="stylesheet" type="text/css"/>
+	<link href="<?php echo DOMAIN; ?>:8080/templates/include/css/base.css" rel="stylesheet" type="text/css"/>
 	<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link type="text/css" rel="stylesheet" href="<?php echo DOMAIN; ?>/templates/include/css/fontello.css">
 	<title><?php echo htmlspecialchars( $results['pageTitle'] )?></title>

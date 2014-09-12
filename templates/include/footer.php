@@ -38,9 +38,9 @@
 
 
 <ul class="footer-right">
-	<li><a href="/membership/membership" style="color:#EE6557 !important;">Membership</a></li>
-	<li>Tides</li>
-	<li><a href="/about/contact">Contact Us</a></li>
+	<li><a href="/membership" >Membership</a></li><!--style="color:#EE6557;"-->
+	<li><a href="http://www.windguru.cz/int/tide.php?id_spot=47924#" target="_blank">Tides</a></li>
+	<li><a href="/contact">Contact Us</a></li>
 	<li><a href="/about/links">Links</a></li>
 	<li><a href="/about/terms-&amp;-disclaimer">Terms and Conditions</a></li>
 	<li><a href="<?php echo DOMAIN; ?>/?action=archive">Article Archive</a></li>
