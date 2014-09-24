@@ -87,7 +87,7 @@ windguruFoot.onclick = (function () {
         count = count + 1;       //was count++; js lint said no!
         if (count === 1) {    // do something on first click
             $('.wg-loader-content').addClass('loader');
-            $('.windguru-content').load("/templates/include/scripts/windguru/index.php", function () {
+            $('.windguru-content').load("../templates/include/scripts/windguru/index.php", function () {
                 $('.wg-loader-content').removeClass('loader');
             });
         }

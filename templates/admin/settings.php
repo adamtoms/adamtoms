@@ -34,7 +34,7 @@
 		</a>
 	</li>
 	<li>
-		<a href="/admin.php?action=menuHome">
+		<a href="#">
 			<i class="icon-stackoverflow"></i>
 			<h2>Main Menu</h2>
 			<p>Edit the frontpage menu</p>

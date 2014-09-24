@@ -32,12 +32,9 @@ switch ( $action ) {
   case 'listArticles':
     listArticles();
     break;
-//menu
-  case 'menuHome':
-  	menuHome();
-  	break;
-  case 'newMenu':
-  	newMenu;
+//menu   
+  case 'menu':
+  	menu();
   	break;
 //categories
     case 'listCategories':
@@ -89,7 +86,7 @@ switch ( $action ) {
     home();
 }
  
-
+ 
 /*******************************************
 *** Login/Out
 *******************************************/
@@ -102,11 +99,12 @@ function login() {
   if ( isset( $_POST['login'] ) ) {
  
     // User has posted the login form: attempt to log the user in
-	if ( $_POST['username'] == ADMIN_USERNAME && $_POST['password'] AND sha1($_POST['password']) == ADMIN_PASSWORD ) {
+ 
+    if ( $_POST['username'] == ADMIN_USERNAME && $_POST['password'] == ADMIN_PASSWORD ) {
  
       // Login successful: Create a session and redirect to the admin homepage
       $_SESSION['username'] = ADMIN_USERNAME;
-      header( "Location: admin.php" );
+      header( "Location: admin" );
  
     } else {
  
@@ -125,7 +123,7 @@ function login() {
  
 function logout() {
   unset( $_SESSION['username'] );
-  header( "Location: admin.php" );
+  header( "Location: admin" );
 }
  
 /*******************************************
@@ -199,11 +197,11 @@ function editArticle() {
 function deleteArticle() {
  
   if ( !$article = Article::getById( (int)$_GET['articleId'] ) ) {
-    header( "Location: admin.php?action=listArticles&error=articleNotFound" );
+    header( "Location: admin.php?action=listAtricles&error=articleNotFound" );
     return;
   }
   $article->delete();
-  header( "Location: admin.php?action=listArticles&status=articleDeleted" );
+  header( "Location: admin.php?action=listAtricles&status=articleDeleted" );
 }
  
 function listArticles() {
@@ -354,7 +352,10 @@ function removeUser() {
 }
 
 
-
+function menu() {
+	$results['pageTitle'] = "Menu";
+	require( TEMPLATE_PATH . "/admin/menu.php");
+}
 
 function zipSite() {
 	$results['pageTitle'] = "Zip Site";
@@ -585,60 +586,6 @@ function listHomepages() {
   require( TEMPLATE_PATH . "/admin/listHomepages.php" );
 }
 
-
-/*******************************************
-*** Menu Home
-*******************************************/
-
-function menuHome() {
-	
-  $results = array();
-  $menuData = menus::getMenuList();
-  $results['menus'] = $menuData['results'];
-  $results['name'] = $menuData['name'];
-  $results['id'] = "id";
-  $results['totalRows'] = $menuData['totalRows'];
-  $results['pageTitle'] = "Menus";
-
-//add in the error messages. 
-	
-	require( TEMPLATE_PATH . "/admin/menuHomepage.php");
-}
-
-/*******************************************
-*** New Menu
-*******************************************/
-
-function newMenu() {
-	 
-  $results = array();
-  $results['pageTitle'] = "New Article";
-  $results['formAction'] = "newArticle";
-  
-  if ( isset( $_POST['saveChanges'] ) ) {
- 
-    // User has posted the article edit form: save the new article
-    $article = new Article;
-    $article->storeFormValues( $_POST );
-    $article->insert();
-    header( "Location: admin.php?action=listArticles&status=changesSaved" );
- 
-  } elseif ( isset( $_POST['cancel'] ) ) {
- 
-    // User has cancelled their edits: return to the article list
-    header( "Location: admin.php?action=listArticles" );
-  } else {
- 
-    // User has not posted the article edit form yet: display the form
-    $results['article'] = new Article;
-    
-    $data = Category::getList();
-    $results['categories'] = $data['results'];
-    
-    require( TEMPLATE_PATH . "/admin/editArticle.php" );
-  }
- 
-}
 
 
 ?>

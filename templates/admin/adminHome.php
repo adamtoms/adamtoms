@@ -47,7 +47,16 @@
 </ul>
 
 <code>
-I should beable to echo a list of all homepage names, much like i did with the categories. this could then be used to populate the menu? not best soloution.
+	<a href="http://adamtoms.co.uk/?action=viewHomepageName&page_identifier=about">View homepage</a>
+	<br>
+	<a href="http://adamtoms.co.uk/admin.php?action=newHomepage">new homepage</a>
+	<br>
+	<a href="http://adamtoms.co.uk/admin.php?action=editHomepage&homepageId=1">edit homepage</a>
+	<br>
+	<a href="admin.php?action=deleteHomepage&amp;homepageId=1">remove homepage</a>
+	<br>
+	<a href="admin.php?action=listHomepages">List Homepages</a>
+	<br>I should beable to echo a list of all homepage names, much like i did with the categories. this could then be used to populate the menu? not best soloution.
 </code>
 
 <?php include "templates/include/admin/footer.php" ?>

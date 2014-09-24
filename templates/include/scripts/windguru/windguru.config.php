@@ -6,7 +6,7 @@ CONFIGURATION FILE FOR windguru.inc.php VERSION 1.7
 $root = $_SERVER['DOCUMENT_ROOT']; 	
 $fileName = "/templates/include/scripts/windguru/index.php";
 $wgOutputRoot = $root."".$fileName;
-//echo $wgOutputRoot;
+echo $wgOutputRoot;
 //line 38, this could be the issue. Work out how to specify the var in place of string.
 
 function WG_config() {

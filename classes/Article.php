@@ -85,6 +85,7 @@ class Article
     }
   }
  
+ 
   /**
   * Returns an Article object matching the given article ID
   *
@@ -103,6 +104,7 @@ class Article
     if ( $row ) return new Article( $row );
   }
 
+
 /*
 return an article object matching the given article page_identifier
 */
@@ -114,13 +116,7 @@ public static function getBypage_identifier( $page_identifier ) {
     $st->execute();
     $row = $st->fetch();
     $conn = null;
-    if( ! $row)
-	{
-		header("Status: 404 Not Found");
-		include_once("404.html");
-		die ("Error" . " File: " . __FILE__ . " on line: " . __LINE__); 
-	}
- else if ( $row ) return new Article( $row );
+    if ( $row ) return new Article( $row );
   }
   
 
@@ -179,11 +175,12 @@ $sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, cont
     $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
     $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
     $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
-	$st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
+$st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
   }
+ 
  
   /**
   * Updates the current Article object in the database.

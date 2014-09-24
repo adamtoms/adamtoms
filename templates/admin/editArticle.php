@@ -20,24 +20,10 @@
             <textarea name="summary" id="summary" placeholder="Brief description of the article" required maxlength="1000" style="height: 5em;"><?php echo htmlspecialchars( $results['article']->summary )?></textarea>
           </li>
  
- 
- 
- 
- 
           <li>
-
             <label for="content">Article Content</label>
             <textarea name="content" id="content" placeholder="The HTML content of the article" required maxlength="100000" style="height: 30em;"><?php echo htmlspecialchars( $results['article']->content )?></textarea>
-            
-                  <script type="text/javascript">
-        CKEDITOR.replace( 'content' );
-      </script>
           </li>
-          
-          
-          
-          
-          
 			<li>
            	 <label for="categoryId">Article Category</label>
            	 <select name="categoryId">
@@ -51,8 +37,17 @@
 <label for="page_identifier">Page Identifier</label>
  <input type="text" name="page_identifier" id="page_identifier" placeholder="Name to appear in url category/page_identifier/" required autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->page_identifier )?>" />
           
-          </li>
+          
+          
 
+		
+          </li>
+          
+          
+          
+          
+          
+          
           <li>
             <label for="publicationDate">Publication Date</label>
             <input type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo $results['article']->publicationDate ? date( "Y-m-d", $results['article']->publicationDate ) : "" ?>" />
