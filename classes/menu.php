@@ -60,7 +60,7 @@ class menus
   * @param assoc The form post values
   */
  
-  public function storeFormValues ( $params ) {
+  public function storeMenuFormValues ( $params ) {
     // Store all the parameters
     $this->__construct( $params );
   }
@@ -117,6 +117,75 @@ class menus
     return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
 
   }
-}
+
+ /**
+  * Inserts the current Article object into the database, and sets its ID property.
+  */
  
+  public function menuInsert() {
+ 
+    // Does the menu object already have an ID?
+    if ( !is_null( $this->id ) ) trigger_error ( "users::userInsert(): Attempt to insert an Article object that already has its ID property set (to $this->id).", E_USER_ERROR );
+ 
+    // Insert the Article
+    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+    $sql = "INSERT INTO menus ( name, value, child, itemOrder, live ) VALUES ( :name, :value, :child, :itemOrder, :live )";
+    $st = $conn->prepare ( $sql );
+    $st->bindValue( ":name", $this->name, PDO::PARAM_STR );
+    $st->bindValue( ":value", $this->value, PDO::PARAM_STR );
+    $st->bindValue( ":child", $this->child, PDO::PARAM_STR );
+    $st->bindValue( ":itemOrder", $this->itemOrder, PDO::PARAM_STR );
+    $st->bindValue( ":live", $this->live, PDO::PARAM_STR );
+    $st->execute();
+    $this->id = $conn->lastInsertId();
+    $conn = null;
+  }
+	
+
+  /**
+  * Updates the current Article object in the database.
+  */
+ 
+  public function menuUpdate() {
+ 
+    // Does the Article object have an ID?
+    if ( is_null( $this->id ) ) trigger_error ( "users::userUpdate(): Attempt to update a User object that does not have its ID property set.", E_USER_ERROR );
+    
+    // Update the user
+    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+    $sql = "SELECT *, id AS id FROM menus WHERE id = :id";
+    $sql = "UPDATE menus SET name=:name, value=:value, child=:child, itemOrder=:itemOrder, live=:live WHERE id=:id"; //original
+    $st = $conn->prepare ( $sql );
+    $st->bindValue( ":name", $this->name, PDO::PARAM_STR );
+    $st->bindValue( ":value", $this->value, PDO::PARAM_STR );
+    $st->bindValue( ":child", $this->child, PDO::PARAM_STR );
+    $st->bindValue( ":itemOrder", $this->itemOrder, PDO::PARAM_STR );
+    $st->bindValue( ":live", $this->live, PDO::PARAM_STR );
+    $st->bindValue( ":id", $this->id, PDO::PARAM_INT ); // added 12/8/14 bind Id
+    $st->execute();
+    $conn = null;
+  }
+ 
+ 
+  /**
+  * Deletes the current Article object from the database.
+  */
+ 
+  public function deleteMenu() {
+ 
+    // Does the user object have an ID?
+    if ( is_null( $this->id ) ) trigger_error ( "users::removeUser(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
+ 
+    // Delete the user
+    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+    $st = $conn->prepare ( "DELETE FROM menus WHERE id = :id LIMIT 1" );
+    $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
+    $st->execute();
+    $conn = null;
+  }
+ 
+}
+  
+	
+
 ?>

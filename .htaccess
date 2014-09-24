@@ -1,27 +1,28 @@
 RewriteEngine On
 
-RewriteRule ^pages/([a-z0-9,&-]+)/?$ ?action=viewArticleName&page_identifier=$1 [L,NC,QSA,B]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/([^/]+)/?$ /?action=viewCategoryName&categoryName=$1&page_identifier=$2 [L,QSA]
-
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA]
-
-
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php [L]
-
 #Eliminates canonicalization 
 RewriteCond %{HTTP_HOST} ^www\.adamtoms\.co.uk$
 RewriteRule ^/?$ "http\:\/\/adamtoms\.co.uk\/" [R=301,L]
 
-#Force admin over https
+RewriteCond %{HTTP_HOST} ^r\.adamtoms\.co\.uk$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.r\.adamtoms\.co\.uk$
+RewriteRule ^/?$ "http\:\/\/adamtoms\.co\.uk" [R=301,L]
+
+#the [L] stops the rewrite rule, then start again below
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+#remove .php from files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1\.php -f [NC]
+RewriteRule ^(.+?)/?$ /$1.php [L]
+
+#rules for query strings
+RewriteRule ^([^/]+)/([^/]+)/?$ /?action=viewCategoryName&categoryName=$1&page_identifier=$2 [L,QSA,B]
+RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA,B]
+
+#Force admin over https (apply when live)
 
 #Blocks known useragent/bot
 RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
@@ -32,7 +33,17 @@ Options -Indexes
 #DirectoryIndex index.php # Redirects to a page
 #IndexOptions +FancyIndexing # Fancy dirs!
 
-  <IfModule mod_deflate.c>
+<IfModule mod_headers.c>
+  <FilesMatch ".(js|css|xml|gz|html)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule>
+
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
+
+<IfModule mod_deflate.c>
 
 # force deflate for mangled headers 
 # developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping/
@@ -127,6 +138,8 @@ Options -Indexes
     Header append Cache-Control "public"
   </IfModule>
 
+
+FileETag None
 </IfModule>
 # FileETag None is not enough for every server.
 <IfModule mod_headers.c>
@@ -135,9 +148,4 @@ Options -Indexes
 
 # Since we`re sending far-future expires, we don't need ETags for static content.
 # developer.yahoo.com/performance/rules.html#etags
-FileETag None
-
-RewriteCond %{HTTP_HOST} ^r\.adamtoms\.co\.uk$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.r\.adamtoms\.co\.uk$
-RewriteRule ^/?$ "http\:\/\/adamtoms\.co\.uk" [R=301,L]
 

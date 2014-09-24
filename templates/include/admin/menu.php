@@ -7,21 +7,32 @@
 	<div class="sprite-small-logo"></div> -->
 	            
 		<nav class="mtogglecontact" id="menucontact">
-			<a href="#">C</a>
+			<i class="icon-lock-open"></i>
 		</nav>
         
-		<nav class="mtogglem" id="menumap">
+	<!--	<nav class="mtogglem" id="menumap">
 			<a href="#">M</a>
-		</nav>
+		</nav> -->
 		
 		<div id="adminWelcome">
-			<p>Welcome, <?php echo htmlspecialchars( $_SESSION['username']) ?>!</p>
-			<a href="admin.php?action=logout"?>Logout</a>
+			<p>Welcome, 
+			<?php 
+			if($_SESSION['username'] == TRUE) {
+			echo htmlspecialchars( $_SESSION['username']) ."!";	
+			}
+			else {
+				echo 'User';
+			};
+			?>
+			</p>
+		<!--	<a href="admin.php?action=logout"?>Logout</a> -->
 		</div>
 
 		<ul id="mmenu">
 			<li><a href="<?php DOMAIN; ?>/admin.php" style="display:block;">Home</a></li>
 		    <li><a href="<?php DOMAIN; ?>/">Live</a></li>
+			<li><a href="<?php DOMAIN; ?>/admin.php?action=zipSite">Zip</a></li>		    
+		    <li><a href="admin.php?action=logout"? alt="logout"><i class="icon-lock-open"></i></a></li>
 		</ul> 
            
 	<!-- map dropdown -->
@@ -35,7 +46,9 @@
             
             <!-- content for contact dropdown -->
 
-            <ul id="mmenucontact"><!--
+            <ul id="mmenucontact">
+            				<li><a href="admin.php?action=logout"?>Logout</a></li>
+<!--
 					<li style="color: white;">
 						<a href="mailto:adamtoms@hotmail.co.uk">adamtoms@hotmail.co.uk</a> 
 					</li>

@@ -59,7 +59,6 @@ class Article
     if ( isset( $data['summary'] ) ) $this->summary = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['summary'] );
     if ( isset( $data['content'] ) ) $this->content = $data['content'];
 	if ( isset( $data['page_identifier'] ) ) $this->page_identifier = $data['page_identifier'];
-     /* added page_identifier and cat indetifier to the array */
   }
  
  
@@ -85,7 +84,6 @@ class Article
     }
   }
  
- 
   /**
   * Returns an Article object matching the given article ID
   *
@@ -104,7 +102,6 @@ class Article
     if ( $row ) return new Article( $row );
   }
 
-
 /*
 return an article object matching the given article page_identifier
 */
@@ -116,7 +113,13 @@ public static function getBypage_identifier( $page_identifier ) {
     $st->execute();
     $row = $st->fetch();
     $conn = null;
-    if ( $row ) return new Article( $row );
+    if( ! $row)
+	{
+		header("Status: 404 Not Found");
+		include_once("404.html");
+		die ("Error" . " File: " . __FILE__ . " on line: " . __LINE__); 
+	}
+ else if ( $row ) return new Article( $row );
   }
   
 
@@ -167,7 +170,10 @@ public static function getBypage_identifier( $page_identifier ) {
     // Insert the Article
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
     
-$sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, content, page_identifier) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content, :page_identifier)";
+	$sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, 
+content, page_identifier) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId,
+:title, :summary, :content, :page_identifier)";
+
 //add above , page_identifier and :page_identifier
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":publicationDate", $this->publicationDate, PDO::PARAM_INT );
@@ -175,12 +181,11 @@ $sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, cont
     $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
     $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
     $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
-$st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
+	$st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
   }
- 
  
   /**
   * Updates the current Article object in the database.
@@ -189,11 +194,15 @@ $st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
   public function update() {
  
     // Does the Article object have an ID?
-    if ( is_null( $this->id ) ) trigger_error ( "Article::update(): Attempt to update an Article object that does not have its ID property set.", E_USER_ERROR );
+    if ( is_null( $this->id ) ) trigger_error ( "Article::update(): Attempt to 
+    update an Article object that does not have its ID property set.", E_USER_ERROR );
     
     // Update the Article
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "UPDATE articles SET publicationDate=FROM_UNIXTIME(:publicationDate), categoryId=:categoryId, title=:title, summary=:summary, content=:content WHERE id = :id";
+    $sql = "UPDATE articles SET publicationDate=FROM_UNIXTIME(:publicationDate),
+    categoryId=:categoryId, title=:title, summary=:summary, content=:content, 
+    page_identifier=:page_identifier WHERE id = :id";
+
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":publicationDate", $this->publicationDate, PDO::PARAM_INT );
     $st->bindValue( ":categoryId", $this->categoryId, PDO::PARAM_INT );
@@ -201,6 +210,7 @@ $st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
     $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
     $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
     $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
+    $st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
     $st->execute();
     $conn = null;
   }
@@ -213,7 +223,8 @@ $st->bindValue( ":page_identifier", $this->page_identifier, PDO::PARAM_STR );
   public function delete() {
  
     // Does the Article object have an ID?
-    if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
+    if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to 
+    delete an Article object that does not have its ID property set.", E_USER_ERROR );
  
     // Delete the Article
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );

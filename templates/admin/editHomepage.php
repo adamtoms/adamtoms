@@ -47,7 +47,7 @@
 </form>
  
 <?php if ( $results['homepages']->id ) { ?>
-      <p><a href="admin.php?action=deleteHomepage&amp;homepageId=<?php echo $results['homepages']->id ?>" onclick="return confirm('Delete This Article?')">Delete This Article</a></p>
+      <p><a href="admin.php?action=deleteHomepage&amp;homepageId=<?php echo $results['homepages']->id ?>" onclick="return confirm('Delete This Article?')">Delete This Homepage</a></p>
 <?php } ?>
  <p><br><br></p>
 <?php include "templates/include/footer.php" ?>

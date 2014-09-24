@@ -28,4 +28,20 @@
 
 	</li>	
 </ul>
+<ul class="homepage-grid" style="margin-top:30px;">
+	<li>
+		<a href="<?php DOMAIN; ?>/admin.php?action=newMenu">
+			<i class="icon-plus-circle"></i>
+			<h2>New Menu</h2>
+			<p>Create a new Homepage.</p>
+		</a>
+	</li>
+	<li>
+		<a href="<?php DOMAIN; ?>/?action=archive">
+			<i class="icon-archive"></i>
+			<h2>Archive</h2>
+			<p>View all published articles</p>
+		</a>
+	</li>
+</ul>
 <?php include "templates/include/admin/footer.php" ?>

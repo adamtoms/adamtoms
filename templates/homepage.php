@@ -14,7 +14,7 @@
 <?php } ?>
  		<ul class="advertone">
 			<li>
-				<a href="/about/the-park">	
+				<a href="/about">	
 					<h1>The Park</h1>
 					<p>22 acres of cut grass. Ramps, sliders, good wind, friendly members and onsite toilets.</p> 
 					<img alt="advert1" src="./images/buggy.jpg">			
@@ -22,7 +22,7 @@
 				</a>
 			</li>
 			<li class="sep">
-				<a href="/events/events">	
+				<a href="/events">	
 					<h2>Events</h2>
 					<p>Find out whats going on at the Park.<!--blog/news on AGM/Event Writeups/reviews/writeups/general news.--></p>
 					<img alt="advert2" src="./images/slider/clubhouse.jpg">
@@ -30,7 +30,7 @@
 				</a>
 			</li>
 			<li class="sep" id="adthree">
-				<a href="/learn/lessons">	
+				<a href="/learn">	
 					<h2>Lessons</h2>
 					<p>Learn from professionals.<Br>You'll leave a safe, self sufficient rider. Capable of flying safely & independantly.</p>
 					<img alt="advert3" src="./images/kitesurf.jpg">

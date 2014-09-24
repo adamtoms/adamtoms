@@ -8,15 +8,8 @@
 	<nav class="mtogglecontact icon-phone" id="menucontact"></nav>
 	<nav class="mtogglem icon-map" id="menumap"></nav> <!--<a href="#"></a>-->
 
-
-
 	<ul id="mmenu">
-	    <li><a href="/">Home</a></li>
-		<li><a href="/About">About</a></li>
-		<li><a href="/Learn">Learn</a></li>
-		<li><a href="/Events">Events</a></li>
-	    <li><a href="/Gallery">Gallery</a></li>
-		<li id="contact_page"><a href="/Contact">Contact</a></li>
+		<?php viewMenuList();?>
 	</ul>
 	<ul id="mmenumap">
 		<li>

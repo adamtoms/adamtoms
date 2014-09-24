@@ -13,7 +13,7 @@
 	<p style="display: inline-block;width: 100%;"><?php echo $results['totalRows']?> categor<?php echo ( $results['totalRows'] != 1 ) ? 'ies' : 'y' ?> in total.</p>
 
  
- 
+
  
  
  

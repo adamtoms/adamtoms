@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <title><?php echo htmlspecialchars( $results['pageTitle'] )?></title>
@@ -9,9 +8,13 @@
 <meta name="description" content="Admin Utility, built by Adam Toms" />
 <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" /> <!-- dougs soloution  -->	
 
-<link href="<?php DOMAIN; ?>/templates/include/admin/fontello.css" rel="stylesheet" type="text/css"/>
-<link href="<?php DOMAIN; ?>/templates/include/admin/admin.css" rel="stylesheet" type="text/css"/> 
+<link href="<?php echo DOMAIN; ?>/templates/include/admin/fontello.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo DOMAIN; ?>:8080/templates/include/admin/admin.css" rel="stylesheet" type="text/css"/> 
 <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+
+<script type="text/javascript" src="templates/admin/components/ckeditor/ckeditor.js"></script>
+
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
 <script>document.cookie = "device_dimensions=" + screen.width + "x" + screen.height;</script>

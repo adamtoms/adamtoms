@@ -32,6 +32,9 @@ switch ( $action ) {
   case 'viewHomepageName':
   	viewHomepageName();
   	break;
+  case 'viewMenuList':
+	viewMenuList();
+	break;
   default:
     homepage();
 }
@@ -70,6 +73,7 @@ function viewArticle() {
   $results['article'] = Article::getById( (int)$_GET["articleId"] );
   $results['category'] = Category::getById( $results['article']->categoryId );
   $results['pageTitle'] = $results['article']->title . " | Adam Toms";
+  
   require( TEMPLATE_PATH . "/viewArticle.php" );
 }
 
@@ -86,6 +90,8 @@ function viewArticleName() {
   $results['article'] = Article::getBypage_identifier( $_GET["page_identifier"] );
   $results['pageTitle'] = $results['article']->title . " | Adam Toms";
   require( TEMPLATE_PATH . "/viewArticle.php" );
+  
+
 }
 
 
@@ -179,29 +185,6 @@ function viewCategoryName() {
 }
 
 
-
-
-
-
-
-/***********
- * return a homepage from the DB. The first lookup isnt needed as it looksup by ID.
- *
-function viewHomepage() {
-	
-  if ( !isset($_GET["homepageId"]) || !$_GET["homepageId"] ) {
-    homepage();
-    return;
-  }
- 
-  $results = array();
-  $results['homepages'] = Homepage::getByHomepageId( (int)$_GET["homepageId"] );
-  $results['category'] = Category::getById( $results['homepages']->categoryId );
-  $results['pageTitle'] = $results['homepages']->title . "";
-  require( TEMPLATE_PATH . "/viewHomepage.php" );
-}
-*/
-
 /* pull from article using page identifier */
 function viewHomepageName() {
   if ( !isset($_GET["page_identifier"]) || !$_GET["page_identifier"] ) {
@@ -212,9 +195,20 @@ function viewHomepageName() {
   $results['homepages'] = Homepage::getByHomepage_name( $_GET["page_identifier"] );
   $results['category'] = Category::getById( $results['homepages']->categoryId );
   
-  $results['pageTitle'] = $results['homepages']->title . " | Adam Toms";
+  $results['pageTitle'] = $results['homepages']->title . "";
   require( TEMPLATE_PATH . "/viewHomepage.php" );
 }
+
+
+function viewMenuList() {
+
+  $results = array();
+  $menuData = Menus::getMenuList();
+  $results['menus'] = $menuData['results'];
+  foreach ( $results['menus'] as $menuItem ) 
+  	{ echo'<li>'; echo $menuItem->value; echo'</li>'; }
+}
+
 
 
 ?>

@@ -25,6 +25,7 @@
           <th>Publication Date</th>
           <th>Article</th>
           <th>Category</th>
+          <th></th>
         </tr>
  
 <?php foreach ( $results['articles'] as $article ) { ?>
@@ -36,6 +37,21 @@
           </td>
            <td>
             <?php echo $results['categories'][$article->categoryId]->name?>
+          </td>
+          <td style="width: 8%;">          		
+          	<!-- If article has no cat set, echo about. If no identifier need to remove anchor, requires reqwrite of this -->
+          	<a href="
+          	<?php 
+          	if ($results['categories'][$article->categoryId]->name == FALSE) {
+          		echo 'about';
+          		} 
+          	else {echo $results['categories'][$article->categoryId]->name;};?>/<?php 
+          	if($article->page_identifier == FALSE) {
+          		echo '">None Set';
+          		/* not sure what to add here echo'#set-identifier'; */
+          	}
+			else {echo $article->page_identifier .'">View Live';};?>
+			</a>
           </td>
         </tr>
  

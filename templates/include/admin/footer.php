@@ -5,7 +5,7 @@
 <ul id="footer-list" style="list-style: none;">	
 	<li id="facebook-f">
 		<i class="icon-like"></i>
-		<div class="footer-text">Facebook</div>
+		<div class="footer-text">Live</div>
 		<div class="fb-loader-content"></div>
 		<div class="facebook-content"></div>
 	</li>
@@ -18,7 +18,7 @@
 	<li>
 		<i class="icon-phone"></i>
 		<div class="footer-text">
-			<a href="/pages/membership">Membership</a>
+			<a href="mailto:adamtoms@hotmail.co.uk">Email Support</a>
 		</div>
 	</li>
 	<li>
