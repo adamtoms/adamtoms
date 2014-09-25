@@ -38,6 +38,7 @@ body {
 	min-height: 100vh;
 	flex-direction: column;
 	font-family:Open Sans; margin:0; background: none repeat scroll 0% 0% rgb(255, 255, 255); /* #EFE9E5*/
+	font-size: 80%;
 }
 
 p{font-size: 1.1em;color: rgb(64,64,64);}
@@ -342,9 +343,10 @@ margin-bottom: -21px;
 text-align: center;
 color: inherit;}
 
-.homepage-grid{width: 90%;
-margin:50px 5% 0;
-display: inline-block;}
+.homepage-grid{width: 80%;
+margin:50px auto 0;
+display: block;
+max-width: 1200px;}
 
 
 #adminHeader {

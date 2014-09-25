@@ -1,6 +1,11 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 jQuery(document).ready(function ($) {
+	
+$.ajaxSetup({
+cache: true
+});
+	
     "use strict";
     $(".mtoggle").click(function () {
         $("#mmenumap,#mmenucontact").hide(400);

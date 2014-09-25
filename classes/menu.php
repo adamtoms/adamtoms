@@ -49,7 +49,7 @@ class menus
     if ( isset( $menuData['id'] ) ) $this->id = (int) $menuData['id'];
 	if ( isset( $menuData['name'] ) ) $this->name = $menuData['name'];
     if ( isset( $menuData['value'] ) ) $this->value = $menuData['value'];
-	if ( isset( $menuData['child'] ) ) $this->child = $menuData['child'];
+	if ( isset( $menuData['child'] ) ) $this->child = (int) $menuData['child'];
 	if ( isset( $menuData['itemOrder'] ) ) $this->itemOrder = (int) $menuData['itemOrder'];
 	if ( isset( $menuData['live'] ) ) $this->live = (int) $menuData['live'];
   }
@@ -95,10 +95,10 @@ class menus
   * @return Array|false A two-element array : results => array, a list of Article objects; totalRows => Total number of articles
   */
  
- public static function getMenuList( $numRows=1000000, $order="id ASC" ) {
+ public static function getMenuList( $numRows=1000000, $order="id ASC" ) {/*DESC*/
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
     $sql = "SELECT SQL_CALC_FOUND_ROWS *, (ID) AS ID FROM menus
-            ORDER BY " . mysql_escape_string($order) . " LIMIT :numRows";
+            ORDER BY " . ($order) . " LIMIT :numRows";
  
     $st = $conn->prepare( $sql );
     $st->bindValue( ":numRows", $numRows, PDO::PARAM_INT );
@@ -133,9 +133,9 @@ class menus
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":name", $this->name, PDO::PARAM_STR );
     $st->bindValue( ":value", $this->value, PDO::PARAM_STR );
-    $st->bindValue( ":child", $this->child, PDO::PARAM_STR );
-    $st->bindValue( ":itemOrder", $this->itemOrder, PDO::PARAM_STR );
-    $st->bindValue( ":live", $this->live, PDO::PARAM_STR );
+    $st->bindValue( ":child", $this->child, PDO::PARAM_INT );
+    $st->bindValue( ":itemOrder", $this->itemOrder, PDO::PARAM_INT );
+    $st->bindValue( ":live", $this->live, PDO::PARAM_INT );
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
@@ -158,9 +158,9 @@ class menus
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":name", $this->name, PDO::PARAM_STR );
     $st->bindValue( ":value", $this->value, PDO::PARAM_STR );
-    $st->bindValue( ":child", $this->child, PDO::PARAM_STR );
-    $st->bindValue( ":itemOrder", $this->itemOrder, PDO::PARAM_STR );
-    $st->bindValue( ":live", $this->live, PDO::PARAM_STR );
+    $st->bindValue( ":child", $this->child, PDO::PARAM_INT );
+    $st->bindValue( ":itemOrder", $this->itemOrder, PDO::PARAM_INT );
+    $st->bindValue( ":live", $this->live, PDO::PARAM_INT );
     $st->bindValue( ":id", $this->id, PDO::PARAM_INT ); // added 12/8/14 bind Id
     $st->execute();
     $conn = null;
