@@ -46,7 +46,7 @@ function archive() {
   
   $categoryId = ( isset( $_GET['categoryId'] ) && $_GET['categoryId'] ) ? (int)$_GET['categoryId'] : null;
   $results['category'] = Category::getById( $categoryId );
-  $data = Article::getList( 100000, $results['category'] ? $results['category']->id : null );
+  $data = Article::getPublicList( 100000, $results['category'] ? $results['category']->id : null );
   
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
@@ -60,8 +60,6 @@ function archive() {
   $results['page_identifier'] = $data['page_identifier'];
   require( TEMPLATE_PATH . "/archive.php" );
 }
- 
-
 
 function viewArticle() {
   if ( !isset($_GET["articleId"]) || !$_GET["articleId"] ) {
@@ -78,9 +76,6 @@ function viewArticle() {
 }
 
 
-
-
-/* pull from article using page identifier */
 function viewArticleName() {
   if ( !isset($_GET["page_identifier"]) || !$_GET["page_identifier"] ) {
     homepage();
@@ -94,14 +89,9 @@ function viewArticleName() {
 
 }
 
-
-
-
-
- 
 function homepage() {
   $results = array();
-  $data = Article::getList( HOMEPAGE_NUM_ARTICLES );
+  $data = Article::getPublicList( HOMEPAGE_NUM_ARTICLES );
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
   
@@ -115,14 +105,12 @@ function homepage() {
 
 function listArticles() {
   $results = array();
-  $data = Article::getList( HOMEPAGE_NUM_ARTICLES );
+  $data = Article::getPublicList( HOMEPAGE_NUM_ARTICLES );
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
   $results['pageTitle'] = "Adam Toms";
   require( TEMPLATE_PATH . "/homepage.php" );
 }
-
-
 
 function viewCategoryList() {
 
@@ -145,28 +133,8 @@ function viewCategoryList() {
   require( TEMPLATE_PATH . "/viewCategory.php" );
 }
 
-/****
- * Gets the category name and returns cat details.
-
-
-//http://adamtoms.co.uk/?action=viewCategoryName&categoryName=membership
-function viewCategoryName() {
- 
-   if ( !isset($_GET["categoryName"]) || !$_GET["categoryName"] ) {
-    homepage();
-    return;
-  }
-  $results = array();
-  $results['category'] = Category::getByCategoryName( $_GET["categoryName"] );
-  $results['pageTitle'] = $results['category']->name . " | Adam Toms";
-  require( TEMPLATE_PATH . "/admin/test.php" );
-}
- ****/
-
-
 //http://adamtoms.co.uk/?action=viewCategoryNameandArticle&categoryName=events&page_identifier=events
 function viewCategoryName() {
-	
 	if ( !isset($_GET["categoryName"]) || !$_GET["categoryName"] ) {
     homepage();
     return;
@@ -180,10 +148,8 @@ function viewCategoryName() {
  // use the below to set the breadcrum level before, will allow to return to the homepage.
  // $results['pageTitle'] = $results['category']->name . " | Adam Toms";
   require( TEMPLATE_PATH . "/viewArticle.php" );
-	
-	
+		
 }
-
 
 /* pull from article using page identifier */
 function viewHomepageName() {
@@ -208,8 +174,6 @@ function viewMenuList() {
   foreach ( $results['menus'] as $menuItem ) 
   	{ echo'<li>'; echo $menuItem->value; echo'</li>'; }
 }
-
-
 
 ?>
 <?php /* page_address_identifier */ ?>

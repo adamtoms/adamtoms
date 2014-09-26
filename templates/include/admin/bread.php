@@ -2,7 +2,7 @@
 
 <div id="breadcrumb">
 	<p>
-		<a href="/admin.php">Home</a>
+		<a href="/admin.php"><!--<i class="icon-home"></i>-->Home</a>
 		-
 		<?php echo htmlspecialchars( $results['pageTitle'] )?>
 	</p>

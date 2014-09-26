@@ -22,7 +22,11 @@ $outputRoot = $root."".$fileName;
 <div class="statusMessage2" id="zipRemoved" style="display: none;">Zip has been removed.</div>
 
 	<ul class="mcontent">
-		<li style="text-align: center;">
+		<li style="    text-align: center;
+    max-width: 500px;
+    margin: 0px auto;
+    display: block;
+">
 		
 			<div id="ZipButton">
 				<button type="button" id="ZipFiles">Download Zip</button>

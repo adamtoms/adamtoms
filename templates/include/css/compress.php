@@ -15,7 +15,7 @@
 /* Add your CSS files to this array (THESE ARE ONLY EXAMPLES) */
 $cssFiles = array(
   "base.css",
-  "fontello.css"
+  "fontello.css",
 );
 
 /**
