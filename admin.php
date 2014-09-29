@@ -84,6 +84,19 @@ switch ( $action ) {
   case 'listHomepages':
   	listHomepages();
   	break;
+//globalSettings
+  case 'viewGlobalSettings':
+	viewGlobalSettings();
+	break;
+  case 'editGlobalSettings':
+  	editGlobalSettings();
+  	break;
+  case 'globalSetting':
+  	globalSetting();
+  	break;
+  case 'deleteSetting':
+  	deleteSetting();
+  	break;
 //misc
   case 'siteSettings':
   	siteSettings();
@@ -706,6 +719,88 @@ function deleteMenu() {
 	$menu->deleteMenu();
 	header( "Location: admin.php?action=menuHome&status=userDeleted" );
 }
+
+
+/*******************************************
+*** Global Settings Home
+*******************************************/
+function viewGlobalSettings() {
+	
+  $results = array();
+  $data = globalSettings::getSettingsList();
+  $results['globalSettings'] = $data['results'];
+  $results['name'] = "name";
+  $results['id'] = "id";
+  $results['totalRows'] = $data['totalRows'];
+  $results['pageTitle'] = "Global Settings";
+
+	require( TEMPLATE_PATH . "/admin/globalSetting.php");
+	
+}
+/*******************************************
+*** Edit Global Settings
+*******************************************/
+function editGlobalSettings() {
+
+  $results = array();
+  $results['pageTitle'] = "Edit Setting";
+  $results['formAction'] = "editGlobalSettings";
+ 
+  if ( isset( $_POST['saveChanges'] ) ) {
+ 
+    // User has posted the article edit form: save the article changes
+ 
+    if ( !$globalSetting = globalSettings::getSettingById( (int)$_POST['settingId'] ) ) {
+      header( "Location: admin?action=viewGlobalSettings&error=articleNotFound" );
+      return;
+    }
+//these two lines stopping the post values goign through
+    $globalSetting->storeSettingFormValues( $_POST );
+    $globalSetting->updateSettings();
+    
+    header( "Location: admin.php?action=viewGlobalSettings&status=changesSaved" );
+ 
+  } elseif ( isset( $_POST['cancel'] ) ) {
+ 
+    // User has cancelled their edits: return to the article list
+    header( "Location: admin.php?action=viewGlobalSettings" );
+  } else {
+ 
+    // User has not posted the article edit form yet: display the form    
+    $results['globalSettings'] = globalSettings::getSettingById( (int)$_GET['settingId'] );
+	require( TEMPLATE_PATH . "/admin/editSettings.php" );
+  }
+
+}
+
+
+/*******************************************
+*** Delete Menu
+*******************************************/
+
+function deleteSetting() {
+ 
+
+	if ( !$globalSetting = globalSettings::getSettingById( (int)$_GET['settingId'] ) ) {
+		header( "Location: admin.php?action=viewGlobalSettings&error=settingNotFound" );
+		return;
+	}
+ 
+	$globalSetting->deleteSetting();
+	header( "Location: admin.php?action=viewGlobalSettings&status=settingsDeleted" );
+}
+
+
+/*******************************************
+*** Call a single Global Setting by name //globalSetting("domain")
+*******************************************/
+function globalSetting($settingName){
+  $results = array();
+  $results['globalSettings'] = globalSettings::getBySetting_identifier($settingName);
+  echo $results['globalSettings']->content;
+}
+
+
 
 ?>
 

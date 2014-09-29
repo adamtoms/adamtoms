@@ -13,10 +13,7 @@
 <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
 
 <script type="text/javascript" src="templates/admin/components/ckeditor/ckeditor.js"></script>
-
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	-->
 <script>document.cookie = "device_dimensions=" + screen.width + "x" + screen.height;</script>
 
 </head>

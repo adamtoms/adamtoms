@@ -175,5 +175,16 @@ function viewMenuList() {
   	{ echo'<li>'; echo $menuItem->value; echo'</li>'; }
 }
 
+
+/*******************************************
+*** Call a single Global Setting by name //globalSetting("domain")
+*******************************************/
+function globalSetting($settingName){
+  $results = array();
+  $results['globalSettings'] = globalSettings::getBySetting_identifier($settingName);
+  echo $results['globalSettings']->content;
+}
+
+
 ?>
 <?php /* page_address_identifier */ ?>

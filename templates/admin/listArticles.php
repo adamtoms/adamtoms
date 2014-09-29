@@ -56,6 +56,7 @@
 </li>
 </ul>
 
+
 <!--old code <a href="<?php // if ($results['categories'][$article->categoryId]->name == FALSE) {
           	//	echo 'about';
           	//	} 
@@ -67,4 +68,5 @@
 			//else {echo $article->page_identifier .'">View Live';};?></a>
 				
 -->
+
 <?php include "templates/include/admin/footer.php" ?>

@@ -20,7 +20,7 @@ $GlobalSettings["Root"];
  * Class to handle Global Settings
  */
  
-class GlobalSettings
+class globalSettings
 {
   // Properties
  
@@ -46,26 +46,6 @@ class GlobalSettings
 
  
  
- 
-/*
-return a category object matching the given article page_identifier
-*/
-public static function getByCategory_identifier( $page_identifier ) {
-    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "SELECT *, UNIX_TIMESTAMP(publicationDate) AS publicationDate FROM articles WHERE page_identifier = :page_identifier";
-    //added to lookup the category id too.
-    $sql = "SELECT *, FROM categories WHERE categoryName = :categoryName";   
-    $st = $conn->prepare( $sql );
-    $st->bindValue( ":page_identifier", $page_identifier, PDO::PARAM_STR );
-    $st->bindValue( ":categoryName", $categoryName, PDO::PARAM_STR );
-    $st->execute();
-    $row = $st->fetch();
-    $conn = null;
-    if ( $row ) return new Article( $row );
-  }
-
- 
- 
   /**
   * Sets the object's properties using the values in the supplied array
   *
@@ -74,10 +54,11 @@ public static function getByCategory_identifier( $page_identifier ) {
  
   public function __construct( $data=array() ) {
     if ( isset( $data['id'] ) ) $this->id = (int) $data['id'];
-    if ( isset( $data['name'] ) ) $this->name = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['name'] );
-    if ( isset( $data['description'] ) ) $this->description = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['description'] );
+    if ( isset( $data['name'] ) ) $this->name = $data['name'];
+    if ( isset( $data['content'] ) ) $this->content = $data['content'];
+    if ( isset( $data['notes'] ) ) $this->notes = $data['notes'];
   }
- 
+
  
   /**
   * Sets the object's properties using the edit form post values in the supplied array
@@ -85,7 +66,7 @@ public static function getByCategory_identifier( $page_identifier ) {
   * @param assoc The form post values
   */
  
-  public function storeFormValues ( $params ) {
+  public function storeSettingFormValues ( $params ) {
  
     // Store all the parameters
     $this->__construct( $params );
@@ -99,17 +80,36 @@ public static function getByCategory_identifier( $page_identifier ) {
   * @return Category|false The category object, or false if the record was not found or there was a problem
   */
  
-  public static function getById( $id ) {
+  public static function getSettingById( $id ) {
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "SELECT * FROM categories WHERE id = :id";
+    $sql = "SELECT * FROM globalSettings WHERE id = :id";
     $st = $conn->prepare( $sql );
     $st->bindValue( ":id", $id, PDO::PARAM_INT );
     $st->execute();
     $row = $st->fetch();
     $conn = null;
-    if ( $row ) return new Category( $row );
+    if ( $row ) return new globalSettings( $row );
   }
  
+ 
+ public static function getBySetting_identifier( $name ) {
+    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+    $sql = "SELECT * FROM globalSettings WHERE name = :name";
+    $st = $conn->prepare( $sql );
+    $st->bindValue( ":name", $name, PDO::PARAM_STR );
+    $st->execute();
+    $row = $st->fetch();
+    $conn = null;
+    if( ! $row)
+	{
+		header("Status: 404 Not Found");
+		include_once("404.html");
+		die ("Error" . " File: " . __FILE__ . " on line: " . __LINE__); 
+	}
+ else if ( $row ) return new globalSettings( $row );
+  }
+  
+  
  
   /**
   * Returns all (or a range of) Category objects in the DB
@@ -119,9 +119,9 @@ public static function getByCategory_identifier( $page_identifier ) {
   * @return Array|false A two-element array : results => array, a list of Category objects; totalRows => Total number of categories
   */
  
-  public static function getList( $numRows=1000000, $order="name ASC" ) {
+  public static function getSettingsList( $numRows=1000000, $order="id ASC" ) {
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM categories
+    $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM globalSettings
             ORDER BY " . mysql_escape_string($order) . " LIMIT :numRows";
  
     $st = $conn->prepare( $sql );
@@ -130,8 +130,8 @@ public static function getByCategory_identifier( $page_identifier ) {
     $list = array();
  
     while ( $row = $st->fetch() ) {
-      $category = new Category( $row );
-      $list[] = $category;
+      $globalSetting = new globalSettings( $row );
+      $list[] = $globalSetting;
     }
  
     // Now get the total number of categories that matched the criteria
@@ -153,10 +153,11 @@ public static function getByCategory_identifier( $page_identifier ) {
  
     // Insert the Category
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "INSERT INTO categories ( name, description ) VALUES ( :name, :description )";
+    $sql = "INSERT INTO globalSettings ( name, content, notes ) VALUES ( :name, :content, :notes )";
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":name", $this->name, PDO::PARAM_STR );
-    $st->bindValue( ":description", $this->description, PDO::PARAM_STR );
+    $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
+    $st->bindValue( ":notes", $this->notes, PDO::PARAM_STR );
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
@@ -167,17 +168,18 @@ public static function getByCategory_identifier( $page_identifier ) {
   * Updates the current Category object in the database.
   */
  
-  public function update() {
+  public function updateSettings() {
  
     // Does the Category object have an ID?
     if ( is_null( $this->id ) ) trigger_error ( "Category::update(): Attempt to update a Category object that does not have its ID property set.", E_USER_ERROR );
     
     // Update the Category
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "UPDATE categories SET name=:name, description=:description WHERE id = :id";
+    $sql = "UPDATE globalSettings SET name=:name, content=:content, notes=:notes WHERE id = :id";
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":name", $this->name, PDO::PARAM_STR );
-    $st->bindValue( ":description", $this->description, PDO::PARAM_STR );
+    $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
+    $st->bindValue( ":notes", $this->notes, PDO::PARAM_STR );
     $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
     $st->execute();
     $conn = null;
@@ -188,14 +190,14 @@ public static function getByCategory_identifier( $page_identifier ) {
   * Deletes the current Category object from the database.
   */
  
-  public function delete() {
+  public function deleteSetting() {
  
     // Does the Category object have an ID?
     if ( is_null( $this->id ) ) trigger_error ( "Category::delete(): Attempt to delete a Category object that does not have its ID property set.", E_USER_ERROR );
  
     // Delete the Category
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $st = $conn->prepare ( "DELETE FROM categories WHERE id = :id LIMIT 1" );
+    $st = $conn->prepare ( "DELETE FROM globalSettings WHERE id = :id LIMIT 1" );
     $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
     $st->execute();
     $conn = null;

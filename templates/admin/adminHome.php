@@ -10,13 +10,6 @@
 		</a>
 	</li>	
 	<li>
-		<a href="<?php DOMAIN; ?>/admin.php?action=listCategories">
-			<i class="icon-th-large"></i>
-			<h2>Categories</h2>
-			<p>Organise your content.</p>
-		</a>
-	</li>
-	<li>
 		<a href="/admin.php?action=listHomepages">
 			<i class="icon-home"></i>
 			<h2>Homepages</h2>
@@ -28,6 +21,13 @@
 			<i class="icon-users"></i>
 			<h2>Users</h2>
 			<p>Manage Users</p>
+		</a>
+	</li>
+	<li>
+		<a href="/admin.php?action=menuHome">
+			<i class="icon-stackoverflow"></i>
+			<h2>Main Menu</h2>
+			<p>Edit the frontpage menu</p>
 		</a>
 	</li>
 	<li>
@@ -44,6 +44,7 @@
 			<p>LogOut</p>
 		</a>
 	</li>
+	<li><a href="/admin.php?action=viewGlobalSettings">View Settings</a></li>
 </ul>
 
 <?php include "templates/include/admin/footer.php" ?>

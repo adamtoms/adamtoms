@@ -7,7 +7,7 @@
 	<div class="sprite-small-logo"></div> -->
 	            
 		<nav class="mtogglecontact" id="menucontact">
-			<i class="icon-lock-open"></i>
+			<i class="icon-lock-open" style="font-size: 1.4em;margin: 5%;"></i>
 		</nav>
         
 	<!--	<nav class="mtogglem" id="menumap">

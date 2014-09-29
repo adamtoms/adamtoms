@@ -47,12 +47,12 @@ p a{color: #EE6557;text-decoration: underline;transition:1s;}
 a h1:hover {color:red !important; transisition:1s;}
 
 h1 {text-align:center;	color:rgb(68, 68, 68);	font-size: 2.5em;	font-weight:300;	padding: 60px 0 0;}
-h2 {text-align:center;	color:rgb(68, 68, 68);	font-size: 2.5em;	font-weight:300;	margin: 8px 0 0;}
+h2 {text-align:center;	color:rgb(68, 68, 68);	font-size: 2.5em;	font-weight:300;	margin: 5% 0 0;}
 h4{text-decoration: none !important;color: grey;font-size: 1.5em;line-height: 0px;}
 h4:hover{color:rgb(238,101,87);}
 h5{text-decoration: none;color: rgb(238,101,87);font-size: 1.3em;}
 h5:target{margin-top:-50px;padding-top:50px;}
-li a {text-decoration:none;color: #EE6557;} /*inherit needed */
+li a {text-decoration:none;color: #EE6557;display:inline;} /*inherit needed */
 
 .Site-content {flex: 1;} /*flexifoot*/
 #console {font-size: 12px;font-family:inherit;color: #999;line-height: 18px;margin-top: 20px;max-height: 150px;overflow: auto;}
@@ -194,7 +194,7 @@ nav#menuleft {background: -moz-linear-gradient(center top , rgb(250, 250, 250), 
 	display: block;
     float: left;
     width: 100%;
-	position:fixed;
+	position:absolute; /*fixed*/
 	z-index: 101;
 }
 /*Top bar that holds the toggle button*/
@@ -336,7 +336,7 @@ display: block;
 }
 
  .homepage-grid li a i{font-size: 5em;
-display: block;
+display: inline-block;
 position: relative;
 width: auto;
 /*margin-top: -22px;*/
@@ -389,13 +389,14 @@ form {
 width: 90%;
 max-width: 560px;
 font-size: 1.5em;
+/*    transition: box-shadow linear 1s;*/
 }
  
  
 /* Give form elements consistent margin, padding and line height */
 form ul {  list-style: none;  margin: 0;  padding: 0;}
 form ul li {margin: .9em 0 0 0; padding: 0;}
-form * {line-height: 2em;}
+form * {line-height: 2em; }
  
  
 /* The field labels */
@@ -426,6 +427,7 @@ display:block;
 width:100%;
 font-size: 0.8em;
 font-weight: 300 !important;
+    transition: box-shadow linear 1s;
 }
  /*
 input { font-size: 1.3em; background: none repeat scroll 0% 0% rgb(251, 251, 251);}
@@ -436,7 +438,7 @@ textarea {font-family: inherit; height: 5em; line-height: 1.5em;}
 textarea#content { font-family: "Courier New", courier, fixed;}
    
 /* Place a border around focused fields */
-form *:focus {  border: 2px solid #7c412b;  outline: none;}
+form *:focus {  /*border: 2px solid #7c412b; */    border-color: #9ecaed; outline: none;     box-shadow: 0 0 10px #9ecaed;}
   
 /* Display correctly filled-in fields with a green background */
 input:valid, textarea:valid {  background: none repeat scroll 0% 0% rgb(251, 251, 251);}
@@ -481,6 +483,9 @@ input[type="submit"]:active {
 
 @media screen and (max-width: 640px) 
 {
+
+table{overflow: auto; width: 105%;display:inline-block;}
+	
 /*input, select, textarea {display: inline;margin: 0px;padding: 0;width: 90%;}	*/
 
 #breadcrumb{width:95%;}
@@ -497,7 +502,10 @@ margin-left:10px;
 min-width: 100px;
 }
 
-#adminWelcome > p{font-size: 1.8em;margin: 0;}
+#adminWelcome > p{font-size: 2em;
+margin: 5% 0px;
+display: inline-block;}
+
 }
 
 @media screen and (min-width: 641px) 

@@ -9,7 +9,7 @@
 			</li>
 			<li>
 				<label for="summary">Summary</label>
-				<textarea name="summary" id="summary" placeholder="Brief description of the article" required maxlength="1000" style="height: 5em;"><?php echo htmlspecialchars( $results['article']->summary )?></textarea>
+				<textarea name="summary" id="summary" placeholder="Brief description of the article, this appears in google as site discription. Max 120 ~ confirm" required maxlength="150" style="height: 5em;"><?php echo htmlspecialchars( $results['article']->summary )?></textarea>
 			</li>
 			<li>
 				<label for="content">Content</label>
@@ -22,12 +22,12 @@
 					<option value="0"<?php echo !$results['article']->categoryId ? " selected" : ""?>>(none)</option>
 					<?php foreach ( $results['categories'] as $category ) { ?>
 					<option value="<?php echo $category->id?>"<?php echo ( $category->id == $results['article']->categoryId ) ? " selected" : ""?>><?php echo htmlspecialchars( $category->name )?></option>
-           			 <?php } ?>
+           			<?php } ?>
            		 </select>
 			</li>
 			<li>
 				<label for="page_identifier">Page Identifier</label>
-				<input type="text" name="page_identifier" id="page_identifier" placeholder="Name to appear in url category/page_identifier/" required autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->page_identifier )?>" />
+			<input type="text" name="page_identifier" id="page_identifier" placeholder="Name to appear in url category/page_identifier/"  autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->page_identifier )?>" /><!--required removed-->
 			</li>
 			<li>
 				<label for="live">Live</label>

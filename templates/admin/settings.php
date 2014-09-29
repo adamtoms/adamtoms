@@ -10,10 +10,9 @@
         <div class="statusMessage"><?php echo $results['statusMessage'] ?></div>
 <?php } ?>
 
-
 <ul class="homepage-grid">
 	<li>
-		<a href="<?php DOMAIN; ?>/admin.php?action=newArticle">
+		<a href="<?php DOMAIN; ?>/admin.php?action=editGlobalSettings&settingId=1">
 			<i class="icon-globe"></i>
 			<h2>Domain</h2>
 			<p>Manage Site Domain</p>
@@ -34,10 +33,10 @@
 		</a>
 	</li>
 	<li>
-		<a href="/admin.php?action=menuHome">
-			<i class="icon-stackoverflow"></i>
-			<h2>Main Menu</h2>
-			<p>Edit the frontpage menu</p>
+		<a href="<?php DOMAIN; ?>/admin.php?action=listCategories">
+			<i class="icon-th-large"></i>
+			<h2>Categories</h2>
+			<p>Organise your content.</p>
 		</a>
 	</li>
 	<li>

@@ -57,3 +57,8 @@
 </footer>
 </body>
 </html>
+
+<?php 
+//$e = microtime(true);
+//echo  round($e - $s, 5) . " Sec";
+?>
