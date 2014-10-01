@@ -19,17 +19,10 @@
 		</a>
 	</li>
 	<li>
-		<a href="<?php DOMAIN; ?>/admin?action=listArticles">
-			<i class="icon-signal"></i>
-			<h2>Admin Details</h2>
-			<p>Manage administrator details</p>
-		</a>
-	</li>
-	<li>
-		<a href="<?php DOMAIN; ?>/admin.php?action=zipSite">
-			<i class="icon-download-cloud"></i>
-			<h2>Zip</h2>
-			<p>Zips the home Dir</p>
+		<a href="/admin.php?action=editGlobalSettings&settingId=4">
+			<i class="icon-list"></i>
+			<h2>APIs</h2>
+			<p>Manage API Feeds</p>
 		</a>
 	</li>
 	<li>
@@ -40,10 +33,17 @@
 		</a>
 	</li>
 	<li>
-		<a href="#">
-			<i class="icon-list"></i>
-			<h2>APIs</h2>
-			<p>Manage API Feeds</p>
+		<a href="<?php DOMAIN; ?>/admin.php?action=zipSite">
+			<i class="icon-download-cloud"></i>
+			<h2>Zip</h2>
+			<p>Zips the home Dir</p>
+		</a>
+	</li>
+	<li>
+		<a href="<?php DOMAIN; ?>/admin?action=listArticles">
+			<i class="icon-signal"></i>
+			<h2>Admin Details</h2>
+			<p>Manage administrator details</p>
 		</a>
 	</li>
 	<li>

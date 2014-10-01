@@ -1,9 +1,7 @@
 <?php include "templates/include/admin/header.php" ?>
-<?php include "templates/include/admin/bread.php" ?>
+<?php  include "templates/include/admin/bread.php" ?>
 <style>
 	
-	
-
 		#ZipButton, #rmZipButton {float:none; margin: 0px 5%;} 
 		#ZipFiles,#rmZip{width: 200px;height: 50px;font-size: 20px;position:relative;margin:2.5% 0;}
 		#zipDownloadText{font-size: 2em;width:100%;margin:5% 0;display: block;text-align: center;}
@@ -22,11 +20,7 @@ $outputRoot = $root."".$fileName;
 <div class="statusMessage2" id="zipRemoved" style="display: none;">Zip has been removed.</div>
 
 	<ul class="mcontent">
-		<li style="    text-align: center;
-    max-width: 500px;
-    margin: 0px auto;
-    display: block;
-">
+		<li style="text-align: center;    max-width: 500px;    margin: 0px auto;    display: block;">
 		
 			<div id="ZipButton">
 				<button type="button" id="ZipFiles">Download Zip</button>

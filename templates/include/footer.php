@@ -13,7 +13,7 @@
 		<i class="icon-weather"></i>
 		<div class="footer-text">Weather</div>
 		<div class="wg-loader-content"></div>
-		<div class="windguru-content" style="overflow-x: auto;" ></div>
+		<div class="windguru-content" style="overflow-x: auto;-webkit-overflow-scrolling:touch;" ></div>
 	</li>
 	<li>
 		<i class="icon-phone"></i>
@@ -49,7 +49,7 @@
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo DOMAIN; ?>/templates/include/scripts/core.js"></script>
+<script type="text/javascript" src="<?php echo DOMAIN; ?>:8080/templates/include/scripts/core.js"></script>
 <!--<script>window.jQuery || document.write('<script src="/site/javascript/vendor/jquery-1.9.1.min.js"><\/script>')</script>-->
 </div>
 <div id="back-top" class="icon-up-outline"></div>

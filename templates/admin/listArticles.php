@@ -45,7 +45,7 @@
           		}
 			else {echo $article->page_identifier .'">View Live';};?></a>
 			</td>
-			<td style="text-align: center;"><?php echo $article->live?></td>
+			<td style="text-align: center;" id="live"><?php echo $article->live?></td>
         </tr>
 <?php } ?>
       </table>

@@ -1,7 +1,28 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 jQuery(document).ready(function ($) {
-	
+
+
+$(function () {
+    setNavigation();
+});
+
+function setNavigation() {
+    var path = window.location.pathname;
+    path = path.replace(/\/$/, "");
+    //alert(path)
+    path = decodeURIComponent(path);
+   
+    $("#mmenu li a").each(function () {
+        var href = $(this).attr('href');
+        
+        if (path.substring(0, href.length) === href) {
+            $(this).closest('li').addClass('active');
+        }
+    });
+}
+
+
 $.ajaxSetup({
 cache: true
 });

@@ -94,6 +94,9 @@ switch ( $action ) {
   case 'globalSetting':
   	globalSetting();
   	break;
+  case 'newGlobalSettings':
+  	newGlobalSettings();
+  	break;
   case 'deleteSetting':
   	deleteSetting();
   	break;
@@ -693,7 +696,7 @@ function editMenu() {
   } elseif ( isset( $_POST['cancel'] ) ) {
  
     // User has cancelled their edits: return to the article list
-    header( "Location: admin.php?action=listArticles" );
+    header( "Location: admin.php?action=menuHome" );
   } else {
  
     // User has not posted the article edit form yet: display the form
@@ -773,6 +776,39 @@ function editGlobalSettings() {
 
 }
 
+/*******************************************
+*** New Article
+*******************************************/
+function newGlobalSettings() {
+ 
+  $results = array();
+  $results['pageTitle'] = "New Settings";
+  $results['formAction'] = "newGlobalSettings";
+  
+  if ( isset( $_POST['saveChanges'] ) ) {
+ 
+    // User has posted the article edit form: save the new article
+    $article = new globalSettings;
+    $article->storeSettingFormValues( $_POST );
+    $article->insert();
+    header( "Location: admin.php?action=viewGlobalSettings&status=changesSaved" );
+ 
+  } elseif ( isset( $_POST['cancel'] ) ) {
+ 
+    // User has cancelled their edits: return to the article list
+    header( "Location: admin.php?action=viewGlobalSettings" );
+  } else {
+ 
+    // User has not posted the article edit form yet: display the form
+    $results['article'] = new globalSettings;
+    
+  //  $data = Category::getList();
+  //  $results['categories'] = $data['results'];
+    
+    require( TEMPLATE_PATH . "/admin/editSettings.php" );
+  }
+ 
+}
 
 /*******************************************
 *** Delete Menu

@@ -39,6 +39,8 @@ Options -Indexes
   </FilesMatch>
 </IfModule>
 
+#removes unnececery tags i.e. form method="get" becomes form - ModPagespeedEnableFilters elide_attributes
+
 
 AddType image/svg+xml svg svgz
 AddEncoding gzip svgz

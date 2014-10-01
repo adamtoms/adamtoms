@@ -1,6 +1,16 @@
 // JavaScript Document
 jQuery(document).ready(function () {
 
+//var live = $("#live").val();
+
+//$(this).find('td').each
+/*if($live === 0){
+	alert ("1s");
+	}
+	else{
+		alert("2s");
+	}
+*/
 $(".statusMessage").fadeIn('slow').delay(3000).fadeOut('slow');
 
 

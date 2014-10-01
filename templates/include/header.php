@@ -1,13 +1,13 @@
-<?php // $s = microtime(true); ?>
+<?php /* $s = microtime(true); */ ?>
 <!DOCTYPE html>
 <html>
 <head>	
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1"/> <!-- was 9 -->
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-	<meta name="keywords" content="Adam,toms,kite,photography,responsive,music,wed,development,jquery" />
+	<meta name="keywords" content="<?php globalSetting("keywords")?>" />
 	<meta name="description" content="<?php echo htmlspecialchars( $results['article']->summary )?><?php echo htmlspecialchars( $results['homepages']->summary )?>" />	
-	<link rel="dns-prefetch" href="//adamtoms.co.uk/">
+	<link rel="dns-prefetch" href="<?php globalSetting("domain")?>">
 	<link rel="stylesheet" type="text/css" media="screen, print, projection" href="/templates/include/css/compress.php" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	<title><?php echo htmlspecialchars( $results['pageTitle'] )?></title>

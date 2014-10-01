@@ -9,7 +9,7 @@
 			</li>
 			<li>
 				<label for="value">value</label>
-				<textarea name="value" id="value" placeholder="Brief description of the article" required maxlength="1000" style="height: 5em;"><?php echo htmlspecialchars( $results['menus']->value )?></textarea>
+				<textarea name="value" id="value" placeholder="Brief description of the article" required maxlength="1000" style="height: 5em;"><?php echo ( $results['menus']->value )?></textarea>
 			</li>
 			<li>
 				<label for="child">Child</label>

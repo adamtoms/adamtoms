@@ -21,14 +21,14 @@
       
       <p><?php echo $results['totalRows']?> article<?php echo ( $results['totalRows'] != 1 ) ? 's' : '' ?> in total.</p>
  
-      <p><a href="admin.php?action=newArticle">Add a new Global Setting</a></p>
+      <p><a href="admin.php?action=newGlobalSetting">Add a new Global Setting</a></p>
 </li>
 </ul>
 
 
 <ul class="homepage-grid">
 	<li>
-		<a href="<?php DOMAIN; ?>/admin.php?action=newArticle">
+		<a href="<?php DOMAIN; ?>/admin.php?action=newGlobalSettings">
 			<i class="icon-plus-circle"></i>
 			<h2>New Article</h2>
 			<p>Create a new page.</p>

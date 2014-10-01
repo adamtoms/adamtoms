@@ -113,7 +113,13 @@ img.portfolio{max-width: 95%;margin: 30px 2.5%;}
 /* ==========================================================================
    =02 Navigation
    ========================================================================== */
-   
+  
+
+.active{
+ border-bottom: 2px solid #EE6557;
+    }
+
+
 a#current{color:red;width:100px;} 
    
 #mmenumap, #mmenucontact {display: none;}
@@ -293,6 +299,12 @@ tr:hover {  background: #ddd;  cursor: pointer;}
    =07 Max-width: 640
    ========================================================================== */
 @media screen and (max-width: 640px) {
+li.active a{border: 2px solid rgb(238, 101, 87) !important;
+box-shadow: 0px 0px 10px rgb(238, 101, 87);}
+
+.active {
+    border-bottom: 0;
+}
 
 #sLogo{pointer-events: none;}/*removed the anchor from logo*/
 
@@ -409,7 +421,7 @@ text-align:center;
 @media screen and (min-width: 641px) 
 {
 
-	
+#headlines > li > h3{font-size:1.6em;}
 #mmenu > li:nth-child(1) > a:nth-child(1) {display:none;} /* hides the home menu for less cluttered hp */
 
 ul#footer-list li i{	

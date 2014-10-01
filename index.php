@@ -39,8 +39,6 @@ switch ( $action ) {
     homepage();
 }
 
-
-
 function archive() {
   $results = array();
   
@@ -83,6 +81,7 @@ function viewArticleName() {
   }
   $results = array();
   $results['article'] = Article::getBypage_identifier( $_GET["page_identifier"] );
+	$results['category'] = Category::getById( $results['article']->categoryId );
   $results['pageTitle'] = $results['article']->title . " | Adam Toms";
   require( TEMPLATE_PATH . "/viewArticle.php" );
   
@@ -111,6 +110,7 @@ function listArticles() {
   $results['pageTitle'] = "Adam Toms";
   require( TEMPLATE_PATH . "/homepage.php" );
 }
+
 
 function viewCategoryList() {
 
@@ -144,7 +144,29 @@ function viewCategoryName() {
   $results['category'] = Category::getByCategoryName( $_GET["categoryName"] );
   $results['article'] = Article::getBypage_identifier( $_GET["page_identifier"] );
   $results['pageTitle'] = $results['article']->title . " ";
- 
+  
+  
+$menuData = Menus::getMenuList();
+$menuResults['menus'] = $menuData['menuResults'];
+
+
+
+//$os = array("Mac", "NT", "Irix", "Linux");
+/*if (in_array("about", $results)) {
+    echo "Got Irix";
+}else{echo'not in array';}
+*/
+
+
+
+  /* if($results['category']->name == true){
+ 	echo'category name ='.$results['category']->name;
+ }else{
+ 	echo'name missing..';
+ }
+ */
+  
+  
  // use the below to set the breadcrum level before, will allow to return to the homepage.
  // $results['pageTitle'] = $results['category']->name . " | Adam Toms";
   require( TEMPLATE_PATH . "/viewArticle.php" );
@@ -165,7 +187,9 @@ function viewHomepageName() {
   require( TEMPLATE_PATH . "/viewHomepage.php" );
 }
 
-
+/*******************************************
+*** echo the menu list
+*******************************************/
 function viewMenuList() {
 
   $results = array();
@@ -173,7 +197,26 @@ function viewMenuList() {
   $results['menus'] = $menuData['results'];
   foreach ( $results['menus'] as $menuItem ) 
   	{ echo'<li>'; echo $menuItem->value; echo'</li>'; }
+  	
+
+
+/*if ($results['category']->name == true){
+	echo'true';
+}else{
+	echo'false';
+};
+*/
+
+
 }
+
+
+//find the cat id and then cat name, 
+
+//take the category name asociated, and set active to menu/list items.
+
+
+
 
 
 /*******************************************
