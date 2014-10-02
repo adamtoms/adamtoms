@@ -52,7 +52,7 @@ h4{text-decoration: none !important;color: grey;font-size: 1.5em;line-height: 0p
 h4:hover{color:rgb(238,101,87);}
 h5{text-decoration: none;color: rgb(238,101,87);font-size: 1.3em;}
 h5:target{margin-top:-50px;padding-top:50px;}
-li a {text-decoration:none;color: #EE6557;display:inline;} /*inherit needed */
+li a {text-decoration:none;color: #EE6557;display:block;} /*inherit needed */
 
 .Site-content {flex: 1;} /*flexifoot*/
 #console {font-size: 12px;font-family:inherit;color: #999;line-height: 18px;margin-top: 20px;max-height: 150px;overflow: auto;}
@@ -336,7 +336,7 @@ display: block;
 }
 
  .homepage-grid li a i{font-size: 5em;
-display: inline-block;
+display: inline;
 position: relative;
 width: auto;
 /*margin-top: -22px;*/

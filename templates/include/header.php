@@ -10,7 +10,7 @@
 	<link rel="dns-prefetch" href="<?php globalSetting("domain")?>">
 	<link rel="stylesheet" type="text/css" media="screen, print, projection" href="/templates/include/css/compress.php" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-	<title><?php echo htmlspecialchars( $results['pageTitle'] )?></title>
+	<title><?php echo htmlspecialchars( $results['pageTitle'] );?></title>
 	<script>document.cookie = "device_dimensions=" + screen.width + "x" + screen.height + "; path=/";</script>
 	<!-- http://blog.keithclark.co.uk/responsive-images-using-cookies/ -->
 </head>

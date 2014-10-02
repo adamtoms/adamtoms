@@ -51,6 +51,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo DOMAIN; ?>:8080/templates/include/scripts/core.js"></script>
 <!--<script>window.jQuery || document.write('<script src="/site/javascript/vendor/jquery-1.9.1.min.js"><\/script>')</script>-->
+
+<?php debugging(); ?>
+
 </div>
 <div id="back-top" class="icon-up-outline"></div>
 

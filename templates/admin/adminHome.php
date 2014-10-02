@@ -6,7 +6,7 @@
 		<a href="<?php DOMAIN; ?>/admin.php?action=listArticles">
 			<i class="icon-popup"></i>
 			<h2>Articles</h2>
-			<p><a href="/admin.php?action=newArticle">New Article</a>, Edit Article, View Articles</p>
+			<p><a href="/admin.php?action=newArticle" style="display: inline;">New</a>, Edit, View Articles</p>
 		</a>
 	</li>	
 	<li>
