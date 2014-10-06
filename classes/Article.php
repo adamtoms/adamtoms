@@ -134,7 +134,7 @@ public static function getBypage_identifier( $page_identifier ) {
 
   public static function getPublicList( $numRows=1000000, $categoryId=null, $order="publicationDate DESC" ) {
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-	$categoryClause = $categoryId ? "WHERE categoryId = :categoryId" : "";
+	$categoryClause = $categoryId ? "AND categoryId = :categoryId" : "";
     $sql = "SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(publicationDate) AS publicationDate FROM articles WHERE live NOT IN(SELECT live FROM articles WHERE live=0) $categoryClause
             ORDER BY " . mysql_escape_string($order) . " LIMIT :numRows";
  

@@ -41,9 +41,9 @@ switch ( $action ) {
 
 function archive() {
   $results = array();
-  
-  $categoryId = ( isset( $_GET['categoryId'] ) && $_GET['categoryId'] ) ? (int)$_GET['categoryId'] : null;
-  $results['category'] = Category::getById( $categoryId );
+  //remove INT and get by id change to getByCategoryName, allows lookup from cat name. Change template for archive page to include correct links. Cat name is surely better for calling? Can create a new rule too 
+  $categoryId = ( isset( $_GET['categoryId'] ) && $_GET['categoryId'] ) ? $_GET['categoryId'] : null;
+  $results['category'] = Category::getByCategoryName( $categoryId );
   $data = Article::getPublicList( 100000, $results['category'] ? $results['category']->id : null );
   
   $results['articles'] = $data['results'];
@@ -58,6 +58,9 @@ function archive() {
   $results['page_identifier'] = $data['page_identifier'];
   require( TEMPLATE_PATH . "/archive.php" );
 }
+
+
+
 
 function viewArticle() {
   if ( !isset($_GET["articleId"]) || !$_GET["articleId"] ) {

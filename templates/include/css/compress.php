@@ -36,10 +36,11 @@ $buffer = str_replace(': ', ':', $buffer);
 $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
 
 // Enable GZip encoding.
-ob_start("ob_gzhandler");
+//ob_start("ob_gzhandler");
 
 // Enable caching
-header('Cache-Control: public');
+//header('Cache-Control: public');
+header('Cache-Control: max-age=31536000');
 
 // Expire in one week
 header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 604800) . ' GMT');

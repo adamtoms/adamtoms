@@ -90,13 +90,6 @@ return a Category object matching the given category Name
     // Store all the parameters
     $this->__construct( $params );
   }
- 
- 
-  
-
-  
-
-
 
 
   /**
