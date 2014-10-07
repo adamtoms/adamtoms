@@ -53,7 +53,7 @@ function archive() {
   $results['categories'] = array();
   foreach ( $data['results'] as $category ) $results['categories'][$category->id] = $category;
   $results['pageHeading'] = $results['category'] ?  $results['category']->name : "Article Archive";
-  $results['pageTitle'] = $results['pageHeading'] . "Article Archive | Adam Toms";
+  $results['pageTitle'] = $results['pageHeading'] . " | Adam Toms";
   
   $results['page_identifier'] = $data['page_identifier'];
   require( TEMPLATE_PATH . "/archive.php" );
@@ -213,13 +213,8 @@ function viewMenuList() {
 
 }
 
-
 //find the cat id and then cat name, 
-
 //take the category name asociated, and set active to menu/list items.
-
-
-
 
 
 /*******************************************

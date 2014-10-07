@@ -31,7 +31,10 @@
 			</li>
 			<li>
 				<label for="live">Live</label>
-				<input type="number" name="live" id="live" placeholder="0 hidden 1 visible" required autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->live )?>" />
+					<select name="live">
+						<option value="1" <?php echo ($results['article']->live == '1') ? " selected" : ""?>>Yes</option>
+						<option value="0" <?php echo !$results['article']->live ? " selected" : ""?>>No</option>
+					</seclect>				
 			</li>
 			<li>
 				<label for="publicationDate">Publication Date</label>

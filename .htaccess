@@ -1,4 +1,3 @@
-AddType application/x-httpd-php55 .php
 RewriteEngine On
 
 #Eliminates canonicalization 
@@ -20,8 +19,10 @@ RewriteCond %{DOCUMENT_ROOT}/$1\.php -f [NC]
 RewriteRule ^(.+?)/?$ /$1.php [L]
 
 #rules for query strings
+RewriteRule ^(archive)/?$ /?action=archive [L,QSA,NC]
+RewriteRule ^(archive)/([^/]+)/?$ /?action=$1&categoryId=$2 [L,QSA,NC]
 RewriteRule ^([^/]+)/([^/]+)/?$ /?action=viewCategoryName&categoryName=$1&page_identifier=$2 [L,QSA,B]
-RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA,B]
+RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA] #removed ,B
 
 
 #Force admin over https (apply when live)
@@ -36,6 +37,7 @@ Options -Indexes
 #IndexOptions +FancyIndexing #Fancy dirs!
 
 
+AddType application/x-httpd-php55 .php
 
 # ----------------------------------------------------------------------
 # Expires headers (for better cache control)

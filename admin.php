@@ -816,7 +816,6 @@ function newGlobalSettings() {
 
 function deleteSetting() {
  
-
 	if ( !$globalSetting = globalSettings::getSettingById( (int)$_GET['settingId'] ) ) {
 		header( "Location: admin.php?action=viewGlobalSettings&error=settingNotFound" );
 		return;

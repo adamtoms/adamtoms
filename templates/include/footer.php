@@ -43,7 +43,7 @@
 	<li><a href="/contact">Contact Us</a></li>
 	<li><a href="/about/links">Links</a></li>
 	<li><a href="/about/terms-&amp;-disclaimer">Terms and Conditions</a></li>
-	<li><a href="<?php echo DOMAIN; ?>/?action=archive">Article Archive</a></li>
+	<li><a href="/archive">Article Archive</a></li>
 	<li><a href="/admin.php">Login</a></li>
 </ul>
 

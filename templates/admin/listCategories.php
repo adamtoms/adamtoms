@@ -26,7 +26,7 @@
  </li> 
  </ul>
 
-<ul class="homepage-grid" style="margin: 0 5% 0;">
+<ul class="homepage-grid" style="margin: 0 auto;">
 	<li>
 		<a href="<?php DOMAIN; ?>/admin.php?action=newCategory">
 			<i class="icon-plus-circle"></i>

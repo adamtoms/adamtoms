@@ -1,20 +1,17 @@
 <?php include "templates/include/admin/header.php" ?>
 <?php  include "templates/include/admin/bread.php" ?>
 <style>
-	
 		#ZipButton, #rmZipButton {float:none; margin: 0px 5%;} 
 		#ZipFiles,#rmZip{width: 200px;height: 50px;font-size: 20px;position:relative;margin:2.5% 0;}
 		#zipDownloadText{font-size: 2em;width:100%;margin:5% 0;display: block;text-align: center;}
-
 	@media screen and (min-width: 641px) { 
 		#ZipButton, #rmZipButton {float: left;width: 40%;}
 	}
-	
 </style>
 <?php 
-$root = $_SERVER['DOCUMENT_ROOT']; 	
-$fileName = "/autozip.zip";
-$outputRoot = $root."".$fileName;
+	$root = $_SERVER['DOCUMENT_ROOT']; 	
+	$fileName = "/autozip.zip";
+	$outputRoot = $root."".$fileName;
 ?>
 
 <div class="statusMessage2" id="zipRemoved" style="display: none;">Zip has been removed.</div>
