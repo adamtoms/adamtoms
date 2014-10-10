@@ -38,6 +38,7 @@
 
 
 <ul class="footer-right">
+	<li style="list-style: none;font-size:1em;">Useful Links</li>
 	<li><a href="/membership" >Membership</a></li><!--style="color:#EE6557;"-->
 	<li><a href="http://www.windguru.cz/int/tide.php?id_spot=47924#" target="_blank">Tides</a></li>
 	<li><a href="/contact">Contact Us</a></li>

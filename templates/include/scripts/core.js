@@ -60,6 +60,7 @@ cache: true
     } else {
         $.noop();
     }
+    
 
 //scroll to top
    // $("#back-top").hide();

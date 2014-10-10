@@ -21,7 +21,7 @@
       
       <p><?php echo $results['totalRows']?> article<?php echo ( $results['totalRows'] != 1 ) ? 's' : '' ?> in total.</p>
  
-      <p><a href="admin.php?action=newGlobalSetting">Add a new Global Setting</a></p>
+      <p><a href="admin.php?action=newGlobalSettings">Add a new Global Setting</a></p>
 </li>
 </ul>
 

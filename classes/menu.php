@@ -118,6 +118,29 @@ class menus
 
   }
 
+ public static function getPublicMenuList( $numRows=1000000, $order="itemOrder ASC" ) {/*DESC*/
+    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+    $sql = "SELECT SQL_CALC_FOUND_ROWS *, (ID) AS ID FROM menus WHERE live NOT IN(SELECT live FROM articles WHERE live=0)
+            ORDER BY " . ($order) . " LIMIT :numRows";
+ 
+    $st = $conn->prepare( $sql );
+    $st->bindValue( ":numRows", $numRows, PDO::PARAM_INT );
+    $st->execute();
+    $list = array();
+	
+    while ( $row = $st->fetch() ) {
+      $menus = new menus( $row );
+      $list[] = $menus;
+    }
+
+    // Now get the total number of menu items that matched the criteria
+    $sql = "SELECT FOUND_ROWS() AS totalRows";
+    $totalRows = $conn->query( $sql )->fetch();
+    $conn = null;
+    return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
+
+  }
+
  /**
   * Inserts the current Article object into the database, and sets its ID property.
   */

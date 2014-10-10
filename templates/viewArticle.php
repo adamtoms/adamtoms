@@ -21,5 +21,5 @@
  	 </li>
     <li><a href="<?php echo DOMAIN; ?>">Return to Homepage</a></li>
 </ul>
- </ul>
+</ul>
 <?php include "templates/include/footer.php" ?>

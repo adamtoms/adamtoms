@@ -2,8 +2,9 @@
 	<nav id="menuleft">
 	<a class="navicon mtoggle" id="toggle-bar" href="#">Main Menu</a>
 
-	<a href="<?php DOMAIN; ?>/" id="sLogo"><img src="<?php echo DOMAIN; ?>/images/logo.svg" id="logo" alt="Essex Kite Park logo">
-	<div id="logo-text">Essex Kite Park</div> 
+	<a href="<?php echo globalSetting('domain') ?>/" id="sLogo">
+		<img src="<?php echo DOMAIN; ?>/images/logo.svg" id="logo" alt="Essex Kite Park logo">
+		<div id="logo-text">Essex Kite Park</div> 
 	</a>
 	<nav class="mtogglecontact icon-phone" id="menucontact"></nav>
 	<nav class="mtogglem icon-map" id="menumap"></nav> <!--<a href="#"></a>-->

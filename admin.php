@@ -632,7 +632,7 @@ function menuHome() {
 
 //add in the error messages. 
 	
-	require( TEMPLATE_PATH . "/admin/menuHomepage.php");
+	require( TEMPLATE_PATH . "/admin/listMenus.php");
 }
 
 /*******************************************

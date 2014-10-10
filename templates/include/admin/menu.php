@@ -32,7 +32,7 @@
 			<li><a href="<?php DOMAIN; ?>/admin.php" style="display:block;">Home</a></li>
 		    <li><a href="<?php DOMAIN; ?>/">Live</a></li>
 			<li><a href="<?php DOMAIN; ?>/admin.php?action=zipSite">Zip</a></li>		    
-		    <li><a href="admin.php?action=logout"? alt="logout"><i class="icon-lock-open"></i></a></li>
+		    <li><a href="admin.php?action=logout" alt="logout"><i class="icon-lock-open" style="margin: 1px 0px;display: inline;"></i></a></li>
 		</ul> 
            
 	<!-- map dropdown -->
@@ -47,7 +47,7 @@
             <!-- content for contact dropdown -->
 
             <ul id="mmenucontact">
-            				<li><a href="admin.php?action=logout"?>Logout</a></li>
+            				<li><a href="admin.php?action=logout">Logout</a></li>
 <!--
 					<li style="color: white;">
 						<a href="mailto:adamtoms@hotmail.co.uk">adamtoms@hotmail.co.uk</a> 

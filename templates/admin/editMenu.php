@@ -21,7 +21,10 @@
 			</li>
 			<li>
 				<label for="live">live</label>
-				<input type="text" name="live" id="live" placeholder="Name to appear in url category/page_identifier/" required autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['menus']->live )?>" />
+				<select name="live" style="width: 70px;">
+					<option value="1" <?php echo ($results['menus']->live == '1') ? " selected" : ""?>>Yes</option>
+					<option value="0" <?php echo !$results['menus']->live ? " selected" : ""?>>No</option>
+				</seclect>
 			</li>
 		</ul>
         <div class="buttons">
@@ -29,7 +32,7 @@
 			<input type="submit" formnovalidate name="cancel" value="Cancel" />
 			<?php if ( $results['menus']->id ) { ?>
       		<p><a href="admin.php?action=deleteMenu&amp;menuId=<?php echo $results['menus']->id ?>" onclick="return confirm('Delete This Article?')">Delete This Article</a></p>
-<?php } ?> -->
+<?php } ?> 
 		</div>
 	</form>
 	<?php include "templates/include/footer.php" ?>

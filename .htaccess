@@ -22,6 +22,7 @@ RewriteRule ^(.+?)/?$ /$1.php [L]
 RewriteRule ^(archive)/?$ /?action=archive [L,QSA,NC]
 RewriteRule ^(archive)/([^/]+)/?$ /?action=$1&categoryId=$2 [L,QSA,NC]
 RewriteRule ^([^/]+)/([^/]+)/?$ /?action=viewCategoryName&categoryName=$1&page_identifier=$2 [L,QSA,B]
+RewriteRule ^news(/.*|)$ /archive/news$1 [L,NC,QSA]
 RewriteRule ^([^/]+)/?$ /?action=viewHomepageName&page_identifier=$1 [L,QSA] #removed ,B
 
 
@@ -35,6 +36,12 @@ RewriteRule .* – [F,L]
 Options -Indexes
 #DirectoryIndex index.php # Redirects to a page
 #IndexOptions +FancyIndexing #Fancy dirs!
+
+
+<FilesMatch "\.(php|swf)$">
+ExpiresDefault A604800
+Header append Cache-Control "public"
+</FilesMatch>
 
 
 AddType application/x-httpd-php55 .php

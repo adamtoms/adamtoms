@@ -18,7 +18,7 @@
 			</li>
 			<li>
 				<label for="categoryId">Category</label>
-				<select name="categoryId">
+				<select name="categoryId" style="width: 150px;">
 					<option value="0"<?php echo !$results['article']->categoryId ? " selected" : ""?>>(none)</option>
 					<?php foreach ( $results['categories'] as $category ) { ?>
 					<option value="<?php echo $category->id?>"<?php echo ( $category->id == $results['article']->categoryId ) ? " selected" : ""?>><?php echo htmlspecialchars( $category->name )?></option>
@@ -27,11 +27,11 @@
 			</li>
 			<li>
 				<label for="page_identifier">Page Identifier</label>
-			<input type="text" name="page_identifier" id="page_identifier" placeholder="Name to appear in url category/page_identifier/"  autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->page_identifier )?>" /><!--required removed-->
+			<input type="text" name="page_identifier" id="page_identifier" placeholder="CategoryName/page_identifier/"  autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->page_identifier )?>" /><!--required removed-->
 			</li>
 			<li>
 				<label for="live">Live</label>
-					<select name="live">
+					<select name="live" style="width: 70px;text-align: center;">
 						<option value="1" <?php echo ($results['article']->live == '1') ? " selected" : ""?>>Yes</option>
 						<option value="0" <?php echo !$results['article']->live ? " selected" : ""?>>No</option>
 					</seclect>				

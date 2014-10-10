@@ -61,7 +61,6 @@ function archive() {
 
 
 
-
 function viewArticle() {
   if ( !isset($_GET["articleId"]) || !$_GET["articleId"] ) {
     homepage();
@@ -96,7 +95,10 @@ function homepage() {
   $data = Article::getPublicList( HOMEPAGE_NUM_ARTICLES );
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
-  
+
+  $results['homepageDescription'] = globalSettings::getBySetting_identifier('homepageDes');
+  $results['homepageDescription']->content;
+
   $data = Category::getList();
   $results['categories'] = array();
   foreach ( $data['results'] as $category ) $results['categories'][$category->id] = $category; 
@@ -196,7 +198,7 @@ function viewHomepageName() {
 function viewMenuList() {
 
   $results = array();
-  $menuData = Menus::getMenuList();
+  $menuData = Menus::getPublicMenuList();
   $results['menus'] = $menuData['results'];
   foreach ( $results['menus'] as $menuItem ) 
   	{ echo'<li>'; echo $menuItem->value; echo'</li>'; }
