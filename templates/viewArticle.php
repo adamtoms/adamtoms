@@ -11,6 +11,17 @@
 		<div><?php echo $results['article']->content?></div>
 		<h1><?php echo htmlspecialchars( $results['page_identifier']->page_identifier )?></h1>
 		<!-- this is doing nothing. need to make it work. related to menu-->
+		<div>
+			<?php if ( $imagePath = $results['article']->getImagePath() ) { ?>
+			<img id="articleImageFullsize" src="/<?php echo $imagePath?>" alt="Article Image" style="max-width:100%;" />
+      <?php } ?>
+
+      </div>
+      
+      
+      
+		
+		
 	</li>
 	<ul id="article-info">
 		<li class="pubDate">Published on <?php echo date('j F Y', $results['article']->publicationDate)?>

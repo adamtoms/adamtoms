@@ -13,6 +13,13 @@
 <ul id="headlines" class="archive mcontent">
 	<?php foreach ( $results['articles'] as $article ) { ?>
 	<li>
+				<p class="summary">
+            <?php if ( $imagePath = $article->getImagePath( IMG_TYPE_THUMB ) ) { ?>
+              <a href=".?action=viewArticle&amp;articleId=<?php echo $article->id?>"><img class="articleImageThumb" src="<?php echo $imagePath?>" alt="Article Thumbnail" style="float:right;"/></a>
+            <?php } ?>
+          </p>
+          
+          
 		<h3>
 			<span class="pubDate">
 				<?php echo date('j F Y', $article->publicationDate)?>
@@ -24,6 +31,7 @@
             </span>
 			<?php } ?>
 		</h3>
+   
 		<p class="summary"><?php echo htmlspecialchars( $article->summary )?></p>
 	</li>
 	<?php } ?>

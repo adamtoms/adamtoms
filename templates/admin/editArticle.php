@@ -1,6 +1,26 @@
 <?php include "templates/include/admin/header.php" ?>
 <?php include'templates/include/admin/bread.php';?>
-	<form action="admin.php?action=<?php echo $results['formAction']?>" method="post" id="edit-article">
+
+
+
+      <script>
+ 
+      // Prevents file upload hangs in Mac Safari
+      // Inspired by http://airbladesoftware.com/notes/note-to-self-prevent-uploads-hanging-in-safari
+ 
+      function closeKeepAlive() {
+        if ( /AppleWebKit|MSIE/.test( navigator.userAgent) ) {
+          var xhr = new XMLHttpRequest();
+          xhr.open( "GET", "/ping/close", false );
+          xhr.send();
+        }
+      }
+ 
+      </script>
+
+
+
+	<form action="admin.php?action=<?php echo $results['formAction']?>" method="post" id="edit-article" enctype="multipart/form-data" onsubmit="closeKeepAlive()">
 		<input type="hidden" name="articleId" value="<?php echo $results['article']->id ?>"/>
 		<ul>
 			<li>
@@ -34,13 +54,28 @@
 					<select name="live" style="width: 70px;text-align: center;">
 						<option value="1" <?php echo ($results['article']->live == '1') ? " selected" : ""?>>Yes</option>
 						<option value="0" <?php echo !$results['article']->live ? " selected" : ""?>>No</option>
-					</seclect>				
+					</select>				
 			</li>
 			<li>
 				<label for="publicationDate">Publication Date</label>
 				<input type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo $results['article']->publicationDate ? date( "Y-m-d", $results['article']->publicationDate ) : "" ?>" />
 			</li>
+			<?php if ( $results['article'] && $imagePath = $results['article']->getImagePath() ) { ?>
+				<li>
+					<label>Current Image</label>
+					<img id="articleImage" src="<?php echo $imagePath ?>" alt="Article Image" />
+				</li>
+				<li>
+					<label for="deleteImage" style="width:200px;float:left;">Remove Image</label>
+					<input type="checkbox" name="deleteImage" id="deleteImage" value="yes" style="width: 50px;float: left;margin: 12px 0px;" />
+				</li>
+			<?php } ?>
+			<li>
+            	<label for="image">New Image</label>
+            	<input type="file" name="image" id="image" placeholder="Choose an image to upload" maxlength="255"style="border:none;" />
+			</li>
 		</ul>
+		
         <div class="buttons">
 			<input type="submit" name="saveChanges" value="Save Changes" />
 			<input type="submit" formnovalidate name="cancel" value="Cancel" />
